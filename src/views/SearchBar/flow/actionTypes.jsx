@@ -1,0 +1,7 @@
+const RECEIVE_POSTS = 'RECEIVE_POSTS';
+const REQUEST_POSTS = 'REQUEST_POSTS';
+
+export {
+    RECEIVE_POSTS,
+    REQUEST_POSTS,
+};
