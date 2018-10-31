@@ -1,7 +1,10 @@
-import SearchBarReducer from '../views/SearchBar/flow/reducer';
-// import AffiliateManagementReducer from '../views/AffiliateManagement/flow/reducer';
+import SearchBarReducer from '../components/SearchBar/flow/reducer';
+import SectorPerformanceReducer from '../components/SectorHighLights/flow/reducer';
+import MostActiveReducer from '../components/MostActive/flow/reducer';
+
 
 export default { 
     SearchBarReducer,
-//   AffiliateManagementReducer,
+    SectorPerformanceReducer,
+    MostActiveReducer,
 };

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ClassNames from 'classnames';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SearchResult from '../components/SearchResult';

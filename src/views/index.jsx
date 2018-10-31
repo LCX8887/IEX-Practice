@@ -1,6 +1,5 @@
-import SearchBar from './SearchBar/index';
-
+import MarketView from './MarketView/index';
 
 export {
-    SearchBar, 
-};
+    MarketView,
+}
