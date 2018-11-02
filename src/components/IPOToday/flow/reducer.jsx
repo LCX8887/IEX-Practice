@@ -1,13 +1,13 @@
 import{ RECEIVE_POSTS,REQUEST_POSTS } from './actionTypes';
 
 const initialState = {   
-   ipoCalendar:[],
+   ipoToday:[],
    isFetching:false,
    lastUpdated:null,
  };
 
 
-const IPOCalendarReducer = (state = initialState, action) => {
+const IPOTodayReducer = (state = initialState, action) => {
     switch (action.type) {
         case REQUEST_POSTS:
             return {
@@ -17,14 +17,14 @@ const IPOCalendarReducer = (state = initialState, action) => {
         case RECEIVE_POSTS:
             return {
                 ...state,
+                ipoToday:action.payload.viewData,
                 isFetching:false,
-                ipoCalendar:action.payload.viewData,
                 lastUpdated:action.receivedAt,
-            }
+            };
         default:
             return state;
     }
   };
   
-  export default IPOCalendarReducer;
+  export default IPOTodayReducer;
   

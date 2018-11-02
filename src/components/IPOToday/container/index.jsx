@@ -8,11 +8,12 @@ import ListDetails from '../../ListDetails';
 
 
 
-class IPOCalendar extends Component {
+
+class IPOToday extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:['Symbol','Company','Expected','Price','Shares','Amount','Float','Percent','Market'],
+            title:['Symbol','Company','Price','Shares','Amount','Percent','Market'],
         };  
            
     }
@@ -22,48 +23,48 @@ class IPOCalendar extends Component {
     }
     
     render() {
-        const { ipoCalendar } = this.props;
+        const { ipoToday } = this.props;
         const title = this.state.title;
-        if(ipoCalendar.length >0 ){
-            var ipoCalendarDetailsAsTitle = getDetails(ipoCalendar,title);
+        if(ipoToday.length >0 ){
+            var ipoTodayDetailsAsTitle = getDetails(ipoToday,title);
         }
+        
 
         return (
             <div>
                <ListDetails                     
                     title={title}
-                    details={ipoCalendarDetailsAsTitle}
+                    details={ipoTodayDetailsAsTitle}
                 />
             </div>
         );
     }
 }
 
-const getDetails = (ipoCalendar,title) => {
+
+const mapStateToProps = state => ({
+    ipoToday:state.IPOTodayReducer.ipoToday,
+});
+
+const getDetails = (ipoToday,title) => {
     var result = [];
-    for(var i=0;i<ipoCalendar.length;i++){
+    for(var i=0;i<ipoToday.length;i++){
         var item=[];
         for(var j=0;j<title.length;j++){
-            item.push(ipoCalendar[i][title[j]]);
+            item.push(ipoToday[i][title[j]]);
         }
         result.push(item);
     }
     return result;
 
 }
-
-const mapStateToProps = state => ({
-    ipoCalendar:state.IPOCalendarReducer.ipoCalendar,
-});
-
-
-IPOCalendar.propTypes = {
+IPOToday.propTypes = {
 
 }
-IPOCalendar.defaultProps = {
+IPOToday.defaultProps = {
    
 }
 
 export default connect(
   mapStateToProps,
-)(IPOCalendar);
+)(IPOToday);
