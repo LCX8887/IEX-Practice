@@ -8,63 +8,65 @@ import ListDetails from '../../ListDetails';
 
 
 
-
-class IPOToday extends Component {
+class IPOTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:['Symbol','Company','Price','Shares','Amount','Percent','Market'],
+            
         };  
            
     }
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(fetchPosts());
+        const target = this.props.target;
+        dispatch(fetchPosts(target));
     }
     
     render() {
-        const { ipoToday } = this.props;
-        const title = this.state.title;
-        if(ipoToday.length >0 ){
-            var ipoTodayDetailsAsTitle = getDetails(ipoToday,title);
+        const { title,target } = this.props;
+        const { ipoData } = this.props;
+        const ipoDetails = ipoData[target];
+       
+        if(ipoDetails !== undefined ){
+            var ipoDetailsAsTitle = getDetails(ipoDetails,title);
         }
-        
 
         return (
             <div>
                <ListDetails                     
                     title={title}
-                    details={ipoTodayDetailsAsTitle}
+                    details={ipoDetailsAsTitle}
                 />
             </div>
         );
     }
 }
 
-
-const mapStateToProps = state => ({
-    ipoToday:state.IPOTodayReducer.ipoToday,
-});
-
-const getDetails = (ipoToday,title) => {
+const getDetails = (ipoDetails,title) => {
     var result = [];
-    for(var i=0;i<ipoToday.length;i++){
+    for(var i=0;i<ipoDetails.length;i++){
         var item=[];
         for(var j=0;j<title.length;j++){
-            item.push(ipoToday[i][title[j]]);
+            item.push(ipoDetails[i][title[j]]);
         }
         result.push(item);
     }
     return result;
 
 }
-IPOToday.propTypes = {
+
+const mapStateToProps = state => ({
+    ipoData:state.IPOReducer,
+});
+
+
+IPOTable.propTypes = {
 
 }
-IPOToday.defaultProps = {
+IPOTable.defaultProps = {
    
 }
 
 export default connect(
   mapStateToProps,
-)(IPOToday);
+)(IPOTable);

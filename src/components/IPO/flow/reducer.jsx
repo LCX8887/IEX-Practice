@@ -1,13 +1,15 @@
-import{ RECEIVE_POSTS,REQUEST_POSTS } from './actionTypes';
+import{
+    RECEIVE_POSTS,
+    REQUEST_POSTS,
+  } from './actionTypes';
 
 const initialState = {   
-   ipoToday:[],
    isFetching:false,
    lastUpdated:null,
  };
 
 
-const IPOTodayReducer = (state = initialState, action) => {
+const IPOReducer = (state = initialState, action) => {
     switch (action.type) {
         case REQUEST_POSTS:
             return {
@@ -17,7 +19,7 @@ const IPOTodayReducer = (state = initialState, action) => {
         case RECEIVE_POSTS:
             return {
                 ...state,
-                ipoToday:action.payload.viewData,
+                [action.target]:action.payload.viewData,
                 isFetching:false,
                 lastUpdated:action.receivedAt,
             };
@@ -26,5 +28,5 @@ const IPOTodayReducer = (state = initialState, action) => {
     }
   };
   
-  export default IPOTodayReducer;
+  export default IPOReducer;
   

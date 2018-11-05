@@ -8,43 +8,46 @@ import ListDetails from '../../ListDetails';
 
 
 
-class IPOCalendar extends Component {
+class SpecialListTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:['Symbol','Company','Expected','Price','Shares','Amount','Float','Percent','Market'],
+            
         };  
            
     }
     componentDidMount() {
         const { dispatch } = this.props;
-        dispatch(fetchPosts());
+        const target = this.props.target;
+        dispatch(fetchPosts(target));
     }
     
     render() {
-        const { ipoCalendar } = this.props;
-        const title = this.state.title;
-        if(ipoCalendar.length >0 ){
-            var ipoCalendarDetailsAsTitle = getDetails(ipoCalendar,title);
+        const { title,target,attribute } = this.props;
+        const { listData } = this.props;
+        const listDetails = listData[target];
+       
+        if(listDetails !== undefined ){
+            var listDetailsAsTitle = getDetails(listDetails,attribute);
         }
 
         return (
             <div>
                <ListDetails                     
                     title={title}
-                    details={ipoCalendarDetailsAsTitle}
+                    details={listDetailsAsTitle}
                 />
             </div>
         );
     }
 }
 
-const getDetails = (ipoCalendar,title) => {
+const getDetails = (listDetails,attribute) => {
     var result = [];
-    for(var i=0;i<ipoCalendar.length;i++){
+    for(var i=0;i<listDetails.length;i++){
         var item=[];
-        for(var j=0;j<title.length;j++){
-            item.push(ipoCalendar[i][title[j]]);
+        for(var j=0;j<attribute.length;j++){
+            item.push(listDetails[i][attribute[j]]);
         }
         result.push(item);
     }
@@ -53,17 +56,17 @@ const getDetails = (ipoCalendar,title) => {
 }
 
 const mapStateToProps = state => ({
-    ipoCalendar:state.IPOCalendarReducer.ipoCalendar,
+    listData:state.SpecialListReducer,
 });
 
 
-IPOCalendar.propTypes = {
+SpecialListTable.propTypes = {
 
 }
-IPOCalendar.defaultProps = {
+SpecialListTable.defaultProps = {
    
 }
 
 export default connect(
   mapStateToProps,
-)(IPOCalendar);
+)(SpecialListTable);

@@ -1,4 +1,4 @@
-import {SearchBar,SectorHighLights,SectorPerformance,MostActive,IPOCalendar,IPOToday } from '../../../components/index';
+import {SearchBar,SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList } from '../../../components/index';
 
 import React, { Component } from 'react';
 
@@ -16,9 +16,9 @@ class MarketView extends Component {
                 <SearchBar />
                 <MostActive />
                 <SectorHighLights />
-                <IPOCalendar />
-                <IPOToday />
+                <IPO />
                 <SectorPerformance />
+                <SpecialList />
             </div>
         );
     }
