@@ -1,6 +1,9 @@
-import {SearchBar,SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList } from '../../../components/index';
+import {SearchBar,SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList,News } from '../../../components/index';
 
 import React, { Component } from 'react';
+import { Layout,Row,Col } from 'antd';
+
+
 
 
 class MarketView extends Component {
@@ -10,16 +13,29 @@ class MarketView extends Component {
         };  
     
     }
-    render() {    
+    render() {
+        const { Header, Footer, Content,Sider } = Layout;    
         return (
-            <div>
-                <SearchBar />
-                <MostActive />
-                <SectorHighLights />
-                <IPO />
-                <SectorPerformance />
-                <SpecialList />
-            </div>
+            <Layout>
+                <Header id='MarketViewLayoutHeader'>
+                    <SearchBar />
+                </Header>
+                <Content id='MarketViewLayoutContent'>
+                    <MostActive />
+                    <Layout>
+                        <Content>
+                            <SectorHighLights />
+                            <IPO />
+                        </Content>
+                        <Sider>
+                        </Sider>
+                    </Layout>
+                    <SectorPerformance />
+                    <SpecialList />
+                    <News />
+                </Content>
+            </Layout>
+           
         );
     }
 }

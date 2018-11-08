@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SectorSummary from '../../SectorSummary';
+import { Row,Col } from 'antd';
 
 
 
@@ -53,14 +54,15 @@ class sectorHighLights extends Component {
        sectorHighLights.push(highestPerformance);
        sectorHighLights.push(lowestPerformance);
         return (
-            <div>
-               {sectorHighLights.map((sector,index) => <SectorSummary
+            <Row id='SectorHighLights'>
+               {sectorHighLights.map((sector,index) => <Col span={12}><SectorSummary
                                             key={index} 
                                             name = {sector.name}
                                             performance = {sector.performance}
                                             background = {sector.background} 
-                />)}
-            </div>
+                />
+                </Col>)}
+            </Row>
         );
     }
 }

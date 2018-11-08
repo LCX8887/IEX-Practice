@@ -3,6 +3,7 @@ import SectorPerformanceReducer from '../components/SectorHighLights/flow/reduce
 import MostActiveReducer from '../components/MostActive/flow/reducer';
 import IPOReducer from '../components/IPO/flow/reducer';
 import SpecialListReducer from '../components/SpecialList/flow/reducer';
+import NewsReducer from '../components/News/flow/reducer';
 
 
 export default { 
@@ -11,4 +12,5 @@ export default {
     MostActiveReducer,
     IPOReducer,
     SpecialListReducer,
+    NewsReducer,
 };

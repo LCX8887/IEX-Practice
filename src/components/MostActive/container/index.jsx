@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SymbolSummary from '../components/SymbolSummary';
+import { Layout,Row,Col } from 'antd';
 
 
 
@@ -22,17 +23,26 @@ class MostActive extends Component {
     
     render() {
         const { mostActive } = this.props;
+        const { Header,Content } = Layout;
 
         return (
-            <div>
-                {mostActive.map((item,index) => <SymbolSummary 
-                                                    key={index}
-                                                    symbol={item.symbol}
-                                                    name={item.companyName}
-                                                    price={item.latestPrice}
-                                                    change={item.changePercent}/>
-                )}
-            </div>
+            <Layout>
+                <Header id='MostActiveHeader'>
+                    <p>MARKET VIEW</p>
+                    <h2>Today in the market</h2>
+                </Header>
+                <Content id='MostActiveContent'>
+                    <Row type='flex' justify='space-around'>
+                        {mostActive.map((item,index) => <Col xs={{ span: 5}} lg={{ span: 2}}><SymbolSummary 
+                                                            key={index}
+                                                            symbol={item.symbol}
+                                                            name={item.companyName}
+                                                            price={item.latestPrice}
+                                                            change={item.changePercent}/></Col>
+                        )}
+                    </Row>
+                </Content>
+            </Layout>
         );
     }
 }

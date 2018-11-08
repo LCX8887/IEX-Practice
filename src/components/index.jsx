@@ -4,7 +4,8 @@ import SectorPerformance from './SectorPerformance/index';
 import MostActive from './MostActive/index';
 import IPO from './IPO/index';
 import SpecialList from './SpecialList/index';
-
+import News from './News/index';
+import './index.css';
 export {
     SearchBar,
     SectorHighLights,
@@ -12,4 +13,5 @@ export {
     MostActive,
     IPO,
     SpecialList,
+    News,
 }

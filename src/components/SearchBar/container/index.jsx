@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SearchResult from '../components/SearchResult';
-import { Input } from 'antd';
+import { Input,Row,Col } from 'antd';
 import 'antd/dist/antd.css'
 
 
@@ -40,17 +40,19 @@ class SearchBar extends Component {
         const Search = Input.Search;
         const { searchResult } = this.state;
         const handleSearchChange = this.handleSearchChange;
-        return (
-            <div>
-               <Search 
-                    placeholder='search'
-                    style={{ width: 200 }}
-                    onChange={handleSearchChange}
-                />
-                <SearchResult
-                    searchResult={searchResult}
-                />
-            </div>
+        return (            
+            <Row type='flex' justify='center'>
+                <Col span={16}>
+                    <Search 
+                        placeholder='search'
+                        onChange={handleSearchChange}
+                    />
+                    <SearchResult
+                        searchResult={searchResult}
+                    />
+                </Col>
+            </Row>
+           
         );
     }
 }

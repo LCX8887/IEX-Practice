@@ -20,6 +20,6 @@ const ListDetails = ({ title,details }) => {
 
 ListDetails.defaultProps = {
     title:[],
-    details:[],    
+    details:[]    
 }
 export default ListDetails;
