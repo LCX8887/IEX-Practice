@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SearchResult from '../components/SearchResult';
-import { Input,Row,Col } from 'antd';
+import { Row,Col,Input } from 'antd';
+import classNames from 'classnames';
 import 'antd/dist/antd.css'
 
-
+const Search = Input.Search;
 
 class SearchBar extends Component {
     constructor(props) {
@@ -17,10 +18,10 @@ class SearchBar extends Component {
 
         };  
         this.handleSearchChange = this.handleSearchChange.bind(this);   
+      
     }
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(fetchPosts());
+        this.props.fetchPosts();
     }
     handleSearchChange = e => {
         const value = e.target.value;
@@ -32,27 +33,28 @@ class SearchBar extends Component {
             }
         }
         this.setState({
-            searchKeyWords: value,
+            searchKeyWords:value,
             searchResult: result, 
         });
     }
-    render() {
-        const Search = Input.Search;
-        const { searchResult } = this.state;
-        const handleSearchChange = this.handleSearchChange;
+    render() {    
+        var searchResultClassName= classNames({
+            'searchResultList': true,
+            'hidden': this.state.searchResult.length === 0,
+          });
         return (            
             <Row type='flex' justify='center'>
                 <Col span={16}>
                     <Search 
                         placeholder='search'
-                        onChange={handleSearchChange}
+                        onChange={this.handleSearchChange}
                     />
                     <SearchResult
-                        searchResult={searchResult}
+                        searchResult={this.state.searchResult}
+                        searchResultClassName={searchResultClassName}
                     />
                 </Col>
             </Row>
-           
         );
     }
 }
@@ -61,6 +63,10 @@ class SearchBar extends Component {
 const mapStateToProps = state => ({
     symbols:state.SearchBarReducer.symbols,
 });
+
+const mapDispatchToProps = {
+    fetchPosts: fetchPosts,
+};
 
 function isMatching(value,obj){
     var symbol = obj.symbol.toUpperCase();
@@ -83,4 +89,5 @@ SearchBar.defaultProps = {
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(SearchBar);

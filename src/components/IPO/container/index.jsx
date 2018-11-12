@@ -12,9 +12,75 @@ class IPO extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            IPOTodayTitle:['Symbol','Company','Price','Shares','Amount','Percent','Market'],
+            IPOTodayColumns:[{
+                title: 'Symbol',
+                dataIndex: 'Symbol',
+                key: 'Symbol',
+              }, {
+                title: 'Company',
+                dataIndex: 'Company',
+                key: 'Company',
+              }, {
+                title: 'Price',
+                dataIndex: 'Price',
+                key: 'Price',
+              },{
+                title: 'Shares',
+                dataIndex: 'Shares',
+                key: 'Shares',
+              },{
+                title: 'Amount',
+                dataIndex: 'Amount',
+                key: 'Amount',
+              },{
+                title: 'Percent',
+                dataIndex: 'Percent',
+                key: 'Percent',
+              },{
+                title: 'Market',
+                dataIndex: 'Market',
+                key: 'Market',
+              }],
             IPOTodayTarget:'today-ipos',
+            
             IPOCalendarTitle:['Symbol','Company','Expected','Price','Shares','Amount','Float','Percent','Market'],
+            IPOCalendarColumns:[{
+                title: 'Symbol',
+                dataIndex: 'Symbol',
+                key: 'Symbol',
+              }, {
+                title: 'Company',
+                dataIndex: 'Company',
+                key: 'Company',
+              }, {
+                title: 'Expected',
+                dataIndex: 'Expected',
+                key: 'Expected',
+              },{
+                title: 'Price',
+                dataIndex: 'Price',
+                key: 'Price',
+              },{
+                title: 'Shares',
+                dataIndex: 'Shares',
+                key: 'Shares',
+              },{
+                title: 'Amount',
+                dataIndex: 'Amount',
+                key: 'Amount',
+              },{
+                title: 'Float',
+                dataIndex: 'Float',
+                key: 'Float',
+              },{
+                title: 'Percent',
+                dataIndex: 'Percent',
+                key: 'Percent',
+              },{
+                title: 'Market',
+                dataIndex: 'Market',
+                key: 'Market',
+              }],
             IPOCalendarTarget:'upcoming-ipos',
         };  
            
@@ -22,17 +88,23 @@ class IPO extends Component {
    
     
     render() {        
-        const { IPOTodayTitle,IPOTodayTarget,IPOCalendarTitle,IPOCalendarTarget } = this.state;
+        const { IPOTodayColumns,IPOTodayTarget,IPOCalendarColumns,IPOCalendarTarget } = this.state;
         return (
-            <div>
-               <IPOTable                     
-                    title={IPOTodayTitle}
-                    target={IPOTodayTarget}
-                />
-                <IPOTable                     
-                    title={IPOCalendarTitle}
-                    target={IPOCalendarTarget}
-                />
+            <div className='IPO'>
+                <div className='IPOToday'>
+                    <h2>Today's Expected IPOs</h2>
+                    <IPOTable                    
+                            columns={IPOTodayColumns}
+                            target={IPOTodayTarget}
+                        />
+                </div>
+                <div className='IPOCalendar'>
+                    <h2>IPO Calendar</h2>
+                    <IPOTable                
+                        columns={IPOCalendarColumns}
+                        target={IPOCalendarTarget}
+                    />
+                </div>
             </div>
         );
     }

@@ -1,4 +1,11 @@
 
-#SectorHighLights {
+.SectorHighLights {
     background-color: white;
+    padding:10px;
+}
+.SectorHighLightsHeader {
+    height: auto;
+    line-height: 1;
+    text-align: left;
+    padding:10px;
 }

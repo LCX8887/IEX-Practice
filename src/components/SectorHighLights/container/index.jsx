@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import SectorSummary from '../../SectorSummary';
-import { Row,Col } from 'antd';
+import { Layout,Row,Col } from 'antd';
+
+const { Header,Content } = Layout;
 
 
 
@@ -25,9 +27,11 @@ class sectorHighLights extends Component {
     
     render() {
         
-       const { sectors } = this.props;
+       const { sectors,lastUpdated } = this.props;
        const { backgroundPreFix,backgroundSufFix } = this.state;      
-     
+        var day = new Date(lastUpdated).toDateString();
+        var time= new Date(lastUpdated).toTimeString().slice(0,8);
+        var updatedTime = day+','+time;
        var highestPerformance={};
        var lowestPerformance={};
        var sectorHighLights = [];
@@ -54,15 +58,22 @@ class sectorHighLights extends Component {
        sectorHighLights.push(highestPerformance);
        sectorHighLights.push(lowestPerformance);
         return (
-            <Row id='SectorHighLights'>
-               {sectorHighLights.map((sector,index) => <Col span={12}><SectorSummary
-                                            key={index} 
-                                            name = {sector.name}
-                                            performance = {sector.performance}
-                                            background = {sector.background} 
-                />
-                </Col>)}
-            </Row>
+            <Layout>
+                <Header className='SectorHighLightsHeader'>
+                    <h2>Sector HighLights</h2>
+                    <p>{updatedTime}</p>
+                </Header>
+                <Content className='MostActiveContent'>
+                    <Row className='SectorHighLights' type='flex' justify='start' gutter={24}>
+                        {sectorHighLights.map((sector,index) => <Col span={10}><SectorSummary
+                                                                                    key={index} 
+                                                                                    name = {sector.name}
+                                                                                    performance = {sector.performance}
+                                                                                    background = {sector.background} />
+                                                                </Col>)}
+                    </Row>
+                </Content>
+            </Layout>
         );
     }
 }
@@ -70,6 +81,7 @@ class sectorHighLights extends Component {
 
 const mapStateToProps = state => ({
     sectors:state.SectorPerformanceReducer.sectors,
+    lastUpdated:state.SectorPerformanceReducer.lastUpdated,
 });
 
 

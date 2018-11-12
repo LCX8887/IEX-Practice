@@ -1,17 +1,9 @@
-.sectorSummary {
-    max-width:300px;
-    height:85px;
-    margin:5px;
+.SectorSummary .ant-card-body {
+    padding:5px;
 }
-.sectorSummary p {
-    color:white;
-    font-weight: bolder;
-    margin: 10px;
-    position: absolute;    
+.SectorSummary .ant-card-body p {
+    margin-bottom:0px;
 }
-.sectorSummary p:nth-child(2){
-    right:0px;
-    bottom:0px;
-    padding:2px;
-    background-color: green;
+.SectorSummary .ant-card-cover img{
+    height:120px;
 }

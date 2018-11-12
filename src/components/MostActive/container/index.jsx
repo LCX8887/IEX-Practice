@@ -5,7 +5,7 @@ import { fetchPosts } from '../flow/actions';
 import SymbolSummary from '../components/SymbolSummary';
 import { Layout,Row,Col } from 'antd';
 
-
+const { Header,Content } = Layout;
 
 
 class MostActive extends Component {
@@ -22,18 +22,15 @@ class MostActive extends Component {
     }
     
     render() {
-        const { mostActive } = this.props;
-        const { Header,Content } = Layout;
-
         return (
             <Layout>
-                <Header id='MostActiveHeader'>
+                <Header className='MostActiveHeader'>
                     <p>MARKET VIEW</p>
                     <h2>Today in the market</h2>
                 </Header>
-                <Content id='MostActiveContent'>
+                <Content className='MostActiveContent'>
                     <Row type='flex' justify='space-around'>
-                        {mostActive.map((item,index) => <Col xs={{ span: 5}} lg={{ span: 2}}><SymbolSummary 
+                        {this.props.mostActive.map((item,index) => <Col xs={{ span: 8}} sm={{ span: 4}} lg={{ span: 2}}><SymbolSummary 
                                                             key={index}
                                                             symbol={item.symbol}
                                                             name={item.companyName}

@@ -1,6 +1,38 @@
-#MostActiveHeader {
+.MostActiveHeader {
     background-color: white;
     height: auto;
     line-height: 1;
     text-align: left;
+    padding:10px;
+}
+.MostActiveContent {
+    background-color: white;
+}
+.SymbolSummary {
+    background-color: #eeeff1;
+    margin:5px;
+}
+.SymbolSummary .ant-card-head {
+    text-align: left;
+    padding: 5px 30px 5px 5px;
+    font-size: 5px;
+}
+.SymbolSummary .ant-card-head-title {
+    padding:0px;
+}
+.SymbolSummary .ant-card-head-title p{
+    margin-bottom:5px;
+}
+.SymbolSummary .ant-card-body {
+    text-align: right;
+    padding: 10px;
+}
+.SymbolSummary .ant-card-body p {
+    margin-bottom:5px;
+}
+.green {
+    color:green;
+}
+.red {
+    color:red;
 }

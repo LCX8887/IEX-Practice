@@ -1,8 +1,9 @@
 import React from 'react';
 
-const ListDetails = ({ title,details }) => {
+const ListDetails = ({ title,details }) => {      
+      
     return (
-        <div>
+        
             <table>
                 <thead>
                     <tr>
@@ -14,7 +15,7 @@ const ListDetails = ({ title,details }) => {
                                     <tr>{detail.map(item => <td>{item}</td>)}</tr>)}
                 </tbody>
             </table>
-        </div>
+       
     )
 }
 

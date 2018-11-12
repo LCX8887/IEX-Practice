@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
-import ListDetails from '../../ListDetails';
+import { Table } from 'antd';
 
 
 
@@ -23,36 +23,13 @@ class IPOTable extends Component {
     }
     
     render() {
-        const { title,target } = this.props;
-        const { ipoData } = this.props;
+        const { ipoData,target,columns } = this.props;
         const ipoDetails = ipoData[target];
        
-        if(ipoDetails !== undefined ){
-            var ipoDetailsAsTitle = getDetails(ipoDetails,title);
-        }
-
         return (
-            <div>
-               <ListDetails                     
-                    title={title}
-                    details={ipoDetailsAsTitle}
-                />
-            </div>
+            <Table dataSource={ipoDetails} columns={columns} pagination={false}/>
         );
     }
-}
-
-const getDetails = (ipoDetails,title) => {
-    var result = [];
-    for(var i=0;i<ipoDetails.length;i++){
-        var item=[];
-        for(var j=0;j<title.length;j++){
-            item.push(ipoDetails[i][title[j]]);
-        }
-        result.push(item);
-    }
-    return result;
-
 }
 
 const mapStateToProps = state => ({

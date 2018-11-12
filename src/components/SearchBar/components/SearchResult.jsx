@@ -1,9 +1,9 @@
 import React from 'react';
 import { List } from 'antd';
 
-const SearchResult = ({ searchResult }) => {
+const SearchResult = ({ searchResult,searchResultClassName }) => {
     return (
-            <List id='searchResultList'
+            <List className={searchResultClassName}
                 itemLayout="horizontal"
                 dataSource={searchResult}
                 renderItem={item => (<List.Item>{item.symbol}-{item.name}</List.Item>)}    

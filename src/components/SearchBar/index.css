@@ -1,32 +1,40 @@
-#searchResultList {
-    height:250px;
-    overflow: scroll;
+.searchResultList {
+    max-height:250px;
+    width:100%;
     background-color: white;
-    display:none;
+    overflow-y: scroll;
+    z-index: 10;
+    position:absolute;
+    top: 50px;
+
 }
 
-#searchResultList::-webkit-scrollbar{
+.searchResultList::-webkit-scrollbar{
     width: 9px;
-    height: 0px;
+    height: 9px;
     background-color: white;
    
 }
-#searchResultList::-webkit-scrollbar-track{
+.searchResultList::-webkit-scrollbar-track{
     border-radius: 20px;
     background-color: white;  
    
-}s
-#searchResultList::-webkit-scrollbar-thumb{
+}
+
+.searchResultList::-webkit-scrollbar-thumb{
     height: 20px;
     border-radius: 20px;
-    background-color: rgb(221, 205, 205);  
+    background-color: rgb(211, 217, 223);  
 }
-#searchResultList .ant-list-item {
+.searchResultList .ant-list-item {
     border:none;
 }
-#searchResultList .ant-list-item:hover {
+.searchResultList .ant-list-item:hover {
     background-color: rgb(240, 240, 245);
 }
-#searchResultList .ant-list-item-content-single {
+.searchResultList .ant-list-item-content-single {
     margin-left:12px;
+}
+.hidden {
+    display:none;
 }
