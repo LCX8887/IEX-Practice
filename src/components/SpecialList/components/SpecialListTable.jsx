@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
-import ListDetails from '../../ListDetails';
-
+import { Table } from 'antd';
 
 
 
@@ -23,40 +22,37 @@ class SpecialListTable extends Component {
     }
     
     render() {
-        const { title,target,attribute } = this.props;
-        const { listData } = this.props;
-        const listDetails = listData[target];
-       
-        if(listDetails !== undefined ){
-            var listDetailsAsTitle = getDetails(listDetails,attribute);
+        const { listData,lastUpdated } = this.props;
+        var listDetails = [];      
+        listDetails = listData[this.props.target];
+        if(listDetails !== undefined){
+            for(var i=0;i<listDetails.length;i++){
+                listDetails[i].coName = <div className='coName'><p>{listDetails[i].symbol}</p><p>{listDetails[i].companyName}</p></div>;
+            }
         }
+        
+        
+        var day = new Date(lastUpdated).toDateString();
+        var time= new Date(lastUpdated).toTimeString().slice(0,8);
+        var updatedTime = day+','+time;
 
         return (
-            <div>
-               <ListDetails                     
-                    title={title}
-                    details={listDetailsAsTitle}
-                />
+            <div className='SpecialListTable'>
+                <div className='SpecialListTableHeader'>
+                    <h3>{this.props.title}</h3>
+                    <p>{updatedTime}</p>
+                </div>
+                <Table className='SpecialListTableContent' dataSource={listDetails} columns={this.props.columns} pagination={false}/>
             </div>
         );
     }
 }
 
-const getDetails = (listDetails,attribute) => {
-    var result = [];
-    for(var i=0;i<listDetails.length;i++){
-        var item=[];
-        for(var j=0;j<attribute.length;j++){
-            item.push(listDetails[i][attribute[j]]);
-        }
-        result.push(item);
-    }
-    return result;
 
-}
 
 const mapStateToProps = state => ({
     listData:state.SpecialListReducer,
+    lastUpdated:state.SpecialListReducer.lastUpdated,
 });
 
 
@@ -64,7 +60,7 @@ SpecialListTable.propTypes = {
 
 }
 SpecialListTable.defaultProps = {
-   
+  
 }
 
 export default connect(

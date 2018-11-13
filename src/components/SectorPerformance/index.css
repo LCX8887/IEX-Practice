@@ -1,0 +1,14 @@
+.SectorPerformanceContent {
+    background-color: white;
+    padding:10px;
+    overflow:auto; 
+}
+.SectorPerformanceContent .ant-row-flex{
+    min-width:720px;
+}
+.SectorPerformanceHeader {
+    height: auto;
+    line-height: 1;
+    text-align: left;
+    padding:10px;
+}

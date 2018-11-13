@@ -1,0 +1,22 @@
+
+.SpecialListTableHeader {
+    text-align: left;
+}
+.SpecialListTableHeader h3 {
+    margin-bottom: 0px;
+}
+.SpecialListTableHeader p {
+    font-size: 0.5px;
+}
+.coName p {
+    margin:0;
+}
+.coName p:nth-child(2) {
+    font-size: 0.5px;
+}
+.SpecialList {
+    background-color: white;
+    padding:10px;
+    margin-left:0px;
+    margin-right:0px;
+}

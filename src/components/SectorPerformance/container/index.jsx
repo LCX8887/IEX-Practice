@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import SectorSummary from '../../SectorSummary';
+import { Layout,Row,Col } from 'antd';
 
+const { Header,Content } = Layout;
 
 class SectorPerformance extends Component {
     constructor(props) {
@@ -17,9 +19,12 @@ class SectorPerformance extends Component {
 
     render() {
         
-       const { sectors } = this.props;
+       const { sectors,lastUpdated } = this.props;
        const { backgroundPreFix,backgroundSufFix } = this.state;
        var sectorsWithBackground = [];
+       var day = new Date(lastUpdated).toDateString();
+       var time= new Date(lastUpdated).toTimeString().slice(0,8);
+       var updatedTime = day+','+time;
       
        for(var i=0;i<sectors.length;i++){
            sectorsWithBackground[i] = Object.assign({},sectors[i]);
@@ -28,13 +33,29 @@ class SectorPerformance extends Component {
        }
        
         return (
-            <div>
-               {sectorsWithBackground.map((sector,index) => <SectorSummary
-                                            key = {index} 
-                                            name = {sector.name}
-                                            performance = {sector.performance}
-                                            background = {sector.background} />)}
-            </div>
+            // <div>
+            //    {sectorsWithBackground.map((sector,index) => <SectorSummary
+            //                                 key = {index} 
+            //                                 name = {sector.name}
+            //                                 performance = {sector.performance}
+            //                                 background = {sector.background} />)}
+            // </div>
+            <Layout>
+                <Header className='SectorPerformanceHeader'>
+                    <h2>Sector Performance</h2>
+                    <p>{updatedTime}</p>
+                </Header>
+                <Content className='SectorPerformanceContent'>
+                    <Row type='flex' justify='start' gutter={16}>
+                        {sectorsWithBackground.map((sector,index) => <Col span={index>7?8:6}><SectorSummary
+                                                                                    key={index} 
+                                                                                    name = {sector.name}
+                                                                                    performance = {sector.performance}
+                                                                                    background = {sector.background} />
+                                                                    </Col>)}
+                    </Row>
+                </Content>
+        </Layout>
         );
     }
 }
@@ -42,6 +63,7 @@ class SectorPerformance extends Component {
 
 const mapStateToProps = state => ({
     sectors:state.SectorPerformanceReducer.sectors,
+    lastUpdated:state.SectorPerformanceReducer.lastUpdated,
 });
 
 
