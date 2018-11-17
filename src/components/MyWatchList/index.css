@@ -1,0 +1,10 @@
+.MyWatchList {
+    padding:10px;
+    background-color: white;
+
+}
+.MyWatchList .ant-card-head-title p {
+    padding: 5px;
+    display: inline-block;
+    margin-bottom: 0px;
+}

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
-import NewsTable from '../components/NewsTable';
-import { Card } from 'antd';
-const Meta = Card.Meta;
+import { List } from 'antd';
+const Meta = List.Meta;
 
 
 class News extends Component {
@@ -23,42 +22,35 @@ class News extends Component {
     
     render() {
        const { news } = this.props;
-    //    if(news.length>0){
-    //         var keys = Object.keys(news[0]);
-    //         var newsDetails = getDetails(news,keys);
-    //    }else{
-    //        var newsDetails = [];
-    //    }
-      
-
+       if(news.length !== undefined){
+           for(var i=0;i<news.length;i++){
+                news[i].dateTime = news[i].datetime.slice(0,10)+' '+news[i].datetime.slice(11,16);
+           }
+       }
         return (
-            <div>
-                <div className='NewsHeader'>
-                    <h3>News</h3>
-                </div>
-                {news.map(item => <Card
-                                    cover={<img src={item.image} />}>
-                                    <Meta
-                                        title={item.headline}
-                                        description={item.summary}
-                                    />
-                                    </Card>)}
-               
+            <div className='News'>
+            <h2>News</h2>
+                <List
+                    itemLayout="vertical"
+                    size="large"
+                    dataSource={news}
+                    renderItem={item => (
+                    <List.Item key={item.headline} split={true}>
+                        <List.Item.Meta                         
+                            description={item.dateTime}/>
+                        <List.Item.Meta                         
+                            description={<p>source:{item.source}</p>}/>
+                        <List.Item.Meta
+                            title={<a href={item.url} target='_blank'>{item.headline}</a>}
+                            description={item.summary}
+                        />                   
+                    </List.Item>
+                    )}
+                />
             </div>
-        );
+        )
     }
 }
-// function getDetails(arr,keys){
-//     var result=[];
-//     for(var i=0;i<arr.length;i++){
-//         var item = [];
-//         for(var j=0;j<keys.length;j++){
-//             item.push(arr[i][keys[j]])
-//         }
-//         result.push(item);
-//     }
-//     return result;
-// }
 
 const mapStateToProps = state => ({
     news:state.NewsReducer.news,

@@ -1,0 +1,8 @@
+const DELETE_WATCH_LIST = 'DELETE_WATCH_LIST';
+const ADD_WATCH_LIST = 'ADD_WATCH_LIST';
+
+export {
+    DELETE_WATCH_LIST,
+    ADD_WATCH_LIST,
+    
+};

@@ -10,7 +10,7 @@ const { Header,Content } = Layout;
 
 
 
-class sectorHighLights extends Component {
+class SectorHighLights extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -85,11 +85,11 @@ const mapStateToProps = state => ({
 });
 
 
-sectorHighLights.propTypes = {
+SectorHighLights.propTypes = {
 
 }
-sectorHighLights.defaultProps = {
+SectorHighLights.defaultProps = {
 
 }
 
-export default connect(mapStateToProps)(sectorHighLights);
+export default connect(mapStateToProps)(SectorHighLights);

@@ -1,9 +1,9 @@
-import {SearchBar,SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList,News } from '../../../components/index';
+import {SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList,News,MyWatchList } from '../../../components/index';
 
 import React, { Component } from 'react';
 import { Layout,Row,Col } from 'antd';
 
-
+const { Header, Footer, Content,Sider } = Layout;    
 
 
 class MarketView extends Component {
@@ -14,20 +14,18 @@ class MarketView extends Component {
     
     }
     render() {
-        const { Header, Footer, Content,Sider } = Layout;    
+        
         return (
             <Layout>
-                <Header id='MarketViewLayoutHeader'>
-                    <SearchBar />
-                </Header>
-                <Content id='MarketViewLayoutContent'>
+                <Content className='MarketViewLayoutContent'>
                     <MostActive />
                     <Layout>
                         <Content>
                             <SectorHighLights />
                             <IPO />
                         </Content>
-                        <Sider>
+                        <Sider className='MyWatchList'>
+                            <MyWatchList />
                         </Sider>
                     </Layout>
                     <SectorPerformance />
