@@ -30,3 +30,6 @@
     transform: rotate(360deg);
   }
 }
+.App .AppHeader {
+  background-color: #76a5d2;
+}

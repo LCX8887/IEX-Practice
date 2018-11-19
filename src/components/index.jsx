@@ -6,6 +6,7 @@ import IPO from './IPO/index';
 import SpecialList from './SpecialList/index';
 import News from './News/index';
 import MyWatchList from './MyWatchList/index';
+import SymbolHeader from './SymbolHeader/index';
 import './index.css';
 export {
     SearchBar,
@@ -16,4 +17,6 @@ export {
     SpecialList,
     News,
     MyWatchList,
+
+    SymbolHeader,
 }

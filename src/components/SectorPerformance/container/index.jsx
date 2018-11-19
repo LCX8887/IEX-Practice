@@ -33,13 +33,7 @@ class SectorPerformance extends Component {
        }
        
         return (
-            // <div>
-            //    {sectorsWithBackground.map((sector,index) => <SectorSummary
-            //                                 key = {index} 
-            //                                 name = {sector.name}
-            //                                 performance = {sector.performance}
-            //                                 background = {sector.background} />)}
-            // </div>
+           
             <Layout>
                 <Header className='SectorPerformanceHeader'>
                     <h2>Sector Performance</h2>

@@ -17,7 +17,7 @@ class MarketView extends Component {
         
         return (
             <Layout>
-                <Content className='MarketViewLayoutContent'>
+                <Content className='MarketViewContent'>
                     <MostActive />
                     <Layout>
                         <Content>

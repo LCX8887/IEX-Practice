@@ -6,6 +6,8 @@ import SpecialListReducer from '../components/SpecialList/flow/reducer';
 import NewsReducer from '../components/News/flow/reducer';
 import MyWatchListReducer from '../components/MyWatchList/flow/reducer';
 
+import SymbolHeaderReducer from '../components/SymbolHeader/flow/reducer';
+
 
 export default { 
     SearchBarReducer,
@@ -15,4 +17,5 @@ export default {
     SpecialListReducer,
     NewsReducer,
     MyWatchListReducer,
+    SymbolHeaderReducer,
 };
