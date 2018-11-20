@@ -31,12 +31,12 @@ class SymbolHeader extends Component {
         const { quote,watchList } = this.props;
         const triggerWatchList = this.triggerWatchList;
         const symbol = '('+quote.symbol+')';
-        const change = quote.change>0? '+'+quote.change:'-'+quote.change;
+        const change = quote.change>0? '+'+quote.change:quote.change;
         const changePercent2 =(quote.changePercent*100).toFixed(2)+'%';
-        const changePercent = quote.changePercent>0?'(+'+changePercent2+')':'(-'+changePercent2+')';
-        const extendedChange = quote.extendedChange>0? '+'+quote.extendedChange:'-'+quote.extendedChange;
+        const changePercent = quote.changePercent>0?'(+'+changePercent2+')':'('+changePercent2+')';
+        const extendedChange = quote.extendedChange>0? '+'+quote.extendedChange:quote.extendedChange;
         const extendedChangePercent2 = (quote.extendedChangePercent*100).toFixed(2)+'%';
-        const extendedChangePercent = quote.extendedChangePercent>0?'(+'+extendedChangePercent2+')':'(-'+extendedChangePercent2+')';
+        const extendedChangePercent = quote.extendedChangePercent>0?'(+'+extendedChangePercent2+')':'('+extendedChangePercent2+')';
         const theme = watchList.indexOf(quote.symbol)>=0? 'filled':'outlined';
         const changeClassName= classNames({
             'green': quote.change > 0,

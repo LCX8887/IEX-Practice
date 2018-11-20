@@ -1,3 +1,3 @@
-import MyWatchList from './container/index';
+import MyWatchList from './container/MyWatchList';
 import './index.css';
 export default MyWatchList;

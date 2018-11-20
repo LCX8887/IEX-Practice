@@ -5,7 +5,7 @@ import{ ADD_TO_WATCH_LIST,
 
 const initialState = {   
    selectedSymbol:'aapl',
-   watchList:['AAPL'],
+   watchList:['AAPL','FB','A'],
    selectedDepartment:'',
  };
  const delFromWatchList = (watchList,target) => {

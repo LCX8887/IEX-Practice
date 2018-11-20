@@ -1,4 +1,4 @@
-import {SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList,News,MyWatchList } from '../../../components/index';
+import {SectorHighLights,SectorPerformance,MostActive,IPO,SpecialList,News,MyWatchList,InFocus } from '../../../components/index';
 
 import React, { Component } from 'react';
 import { Layout,Row,Col } from 'antd';
@@ -19,15 +19,16 @@ class MarketView extends Component {
             <Layout>
                 <Content className='MarketViewContent'>
                     <MostActive />
-                    <Layout>
+                    <Layout className='MarketViewLayout'>
                         <Content>
                             <SectorHighLights />
-                            <IPO />
+                            <InFocus />
                         </Content>
                         <Sider className='MyWatchList'>
                             <MyWatchList />
                         </Sider>
                     </Layout>
+                    <IPO />
                     <SectorPerformance />
                     <SpecialList />
                     <News />

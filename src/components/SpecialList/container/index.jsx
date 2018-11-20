@@ -13,20 +13,6 @@ class SpecialList extends Component {
                     title: 'Symbol',
                     dataIndex: 'coName',
                     key: 'Symbol',
-                    },{
-                    title: 'Change',
-                    dataIndex: 'change',
-                    key: 'Change',
-                    }, {
-                    title: 'Price',
-                    dataIndex: 'latestPrice',
-                    key: 'Price',}],
-                target:'infocus',
-                title:'Recently in focus'},
-                {columns:[{
-                    title: 'Symbol',
-                    dataIndex: 'coName',
-                    key: 'Symbol',
                     }, {
                     title: 'Change',
                     dataIndex: 'change',

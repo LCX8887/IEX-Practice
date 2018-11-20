@@ -19,7 +19,7 @@ class App extends Component {
             <Breadcrumb.Item>List</Breadcrumb.Item>
             <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb> */}
-          {/* <MarketView /> */}
+          <MarketView />
           <SymbolDetails />
         </Content>
         <Footer className='AppFooter'>
