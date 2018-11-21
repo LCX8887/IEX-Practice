@@ -3,6 +3,7 @@ import{ RECEIVE_POSTS,REQUEST_POSTS } from './actionTypes';
 const initialState = {
     myWatchList:{},   
     isFetching:false,
+    
  };
 
 const MyWatchListReducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ const MyWatchListReducer = (state = initialState, action) => {
                 ...state,
                 myWatchList:action.payload,
                 isFetching:false,
+                lastUpdated:action.receivedAt,
             }
         default:
             return state;

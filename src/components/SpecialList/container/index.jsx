@@ -13,6 +13,7 @@ class SpecialList extends Component {
                     title: 'Symbol',
                     dataIndex: 'coName',
                     key: 'Symbol',
+                    width:'45%',
                     }, {
                     title: 'Change',
                     dataIndex: 'change',
@@ -27,6 +28,7 @@ class SpecialList extends Component {
                     title: 'Symbol',
                     dataIndex: 'coName',
                     key: 'Symbol',
+                    width:'45%',
                     }, {
                     title: 'Change',
                     dataIndex: 'change',
@@ -41,6 +43,7 @@ class SpecialList extends Component {
                     title: 'Symbol',
                     dataIndex: 'coName',
                     key: 'Symbol',
+                    width:'45%',
                     }, {
                     title: 'Change',
                     dataIndex: 'change',
@@ -55,6 +58,7 @@ class SpecialList extends Component {
                     title: 'Symbol',
                     dataIndex: 'coName',
                     key: 'Symbol',
+                    width:'45%',
                     }, {
                     title: 'Change',
                     dataIndex: 'change',

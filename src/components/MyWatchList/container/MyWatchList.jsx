@@ -18,18 +18,22 @@ class MyWatchList extends Component {
                 title: '',
                 dataIndex: 'button',
                 key: 'button',
+                width:'5%',
               }, {
-                title: '',
-                dataIndex: 'companyName',
+                title: 'Name',
+                dataIndex: 'coName',
                 key: 'name',
+                width:'45%',
               }, {
-                title: '',
+                title: 'Change',
                 dataIndex: 'changePercent',
                 key: 'changePercent',
+                width:'25%',
               },{
-                title: '',
+                title: 'Price',
                 dataIndex: 'close',
                 key: 'close',
+                width:'35%',
               }],
         }; 
         this.handleDelFromWatchList = this.handleDelFromWatchList.bind(this); 
@@ -43,15 +47,25 @@ class MyWatchList extends Component {
         var target = e.currentTarget.value;
         this.props.delFromWatchList(target);
     }  
-    render() {       
-        var listData = getTabletDetails(this.props.watchList,this.props.myWatchList,this.handleDelFromWatchList);
+    render() {
+        const { watchList, myWatchList,lastUpdated } = this.props; 
+
+        var listData = getTabletDetails(watchList,myWatchList,this.handleDelFromWatchList);
         for(var i=0;i<listData.length;i++){
             listData[i].button = <button onClick={this.handleDelFromWatchList} value={listData[i].symbol}><Icon type="star" theme='filled'/></button>;
+            listData[i].coName = <div className='coName'><p>{listData[i].symbol}</p><p>{listData[i].companyName}</p></div>;
         }
+        var day = new Date(lastUpdated).toDateString();
+        var time= new Date(lastUpdated).toTimeString().slice(0,8);
+        var updatedTime = day+','+time;
         return (
-            <div>
-                <p>My watchlist</p>
-                <Table className='WatchList' dataSource={listData} columns={this.state.columns} pagination={{defaultPageSize:2}}/>
+            <div className='MyWatchList'>
+                
+                <h2>My watchlist</h2>
+                <Icon type="star" theme='filled'/>
+                <p>{updatedTime}</p>
+               
+                <Table className='WatchList' dataSource={listData} columns={this.state.columns} pagination={{defaultPageSize:6}} />
             </div>
            
         );
@@ -62,6 +76,7 @@ class MyWatchList extends Component {
 const mapStateToProps = state => ({
    watchList: state.global.watchList,
    myWatchList:state.MyWatchListReducer.myWatchList,
+   lastUpdated:state.MyWatchListReducer.lastUpdated,
 });
 
 const mapDispatchToProps = {

@@ -24,7 +24,7 @@ class MarketView extends Component {
                             <SectorHighLights />
                             <InFocus />
                         </Content>
-                        <Sider className='MyWatchList'>
+                        <Sider className='MarketViewSider' width={400}>
                             <MyWatchList />
                         </Sider>
                     </Layout>
