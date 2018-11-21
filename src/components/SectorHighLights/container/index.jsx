@@ -1,79 +1,57 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { fetchPosts } from '../flow/actions';
+import { fetchSectors } from '../flow/actions';
 import SectorSummary from '../../SectorSummary';
 import { Layout,Row,Col } from 'antd';
 
-const { Header,Content } = Layout;
-
-
-
+const bgSrcPrefix = 'https://iextrading.com/images/stocks/';
+const bgSrcSuffix = '.jpg';
 
 class SectorHighLights extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-           backgroundPreFix: 'https://iextrading.com/images/stocks/',
-           backgroundSufFix: '.jpg',
-
-        };  
-       
+        this.getSrcByName = this.getSrcByName.bind(this);   
+      
     }
     componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(fetchPosts());
+        this.props.fetchSectors();
+    }
+    getSrcByName = (str) => {
+        const name = str.replace(' ','%20');
+        return bgSrcPrefix+name+bgSrcSuffix;
     }
     
     render() {
         
-       const { sectors,lastUpdated } = this.props;
-       const { backgroundPreFix,backgroundSufFix } = this.state;      
-        var day = new Date(lastUpdated).toDateString();
-        var time= new Date(lastUpdated).toTimeString().slice(0,8);
-        var updatedTime = day+','+time;
-       var highestPerformance={};
-       var lowestPerformance={};
-       var sectorHighLights = [];
-       for(var i=0;i<sectors.length;i++){
-            var name = sectors[i].name.replace(' ','%20');
-            var background = backgroundPreFix+name+backgroundSufFix;
-           if(i===0){
-            highestPerformance = Object.assign({},sectors[i]);
-            highestPerformance.background = background;
-            lowestPerformance = Object.assign({},sectors[i]);
-            lowestPerformance.background = background;
-           }
-           if(sectors[i].performance > highestPerformance.performance){
-               highestPerformance = Object.assign({},sectors[i]);                         
-               highestPerformance.background = background;
-           }
-           if(sectors[i].performance < lowestPerformance.performance) {
-               lowestPerformance = Object.assign({},sectors[i]);     
-               lowestPerformance.background = background;
-           }
-           
-        }
-       
-       sectorHighLights.push(highestPerformance);
-       sectorHighLights.push(lowestPerformance);
+        const { sectors,lastUpdated } = this.props;
+        const day = new Date(lastUpdated).toDateString();
+        const time= new Date(lastUpdated).toTimeString().slice(0,8);
+        const updatedTime = day+','+time;
+
+        const lowest = sectors.sort((s1,s2) => s1.performance-s2.performance)[0];       
+        const highest = sectors.sort((s1,s2) => s2.performance-s1.performance)[0];
+    
         return (
-            <Layout>
-                <Header className='SectorHighLightsHeader'>
+            <div className='SectorHighLights'>
+                <div className='SectorHighLightsHeader'>
                     <h2>Sector HighLights</h2>
                     <p>{updatedTime}</p>
-                </Header>
-                <Content className='MostActiveContent'>
+                </div>
+                <div className='MostActiveContent'>
                     <Row className='SectorHighLights' type='flex' justify='start' gutter={24}>
-                        {sectorHighLights.map((sector,index) => <Col span={10}><SectorSummary
-                                                                                    key={index} 
-                                                                                    name = {sector.name}
-                                                                                    performance = {sector.performance}
-                                                                                    background = {sector.background} />
-                                                                </Col>)}
+                        {[highest,lowest].filter(sector => !!sector).map((sector,index) => 
+                            <Col key={index} span={10}>
+                                <SectorSummary                                                                                    
+                                    name = {sector.name}
+                                    performance = {sector.performance}
+                                    background = {this.getSrcByName(sector.name)} 
+                                />
+                            </Col>
+                        )}
                     </Row>
-                </Content>
-            </Layout>
+                </div>
+            </div>
         );
     }
 }
@@ -83,7 +61,9 @@ const mapStateToProps = state => ({
     sectors:state.SectorPerformanceReducer.sectors,
     lastUpdated:state.SectorPerformanceReducer.lastUpdated,
 });
-
+const mapDispatchToProps = {
+    fetchSectors,
+}
 
 SectorHighLights.propTypes = {
 
@@ -92,4 +72,4 @@ SectorHighLights.defaultProps = {
 
 }
 
-export default connect(mapStateToProps)(SectorHighLights);
+export default connect(mapStateToProps,mapDispatchToProps)(SectorHighLights);

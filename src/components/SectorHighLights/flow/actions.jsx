@@ -10,7 +10,7 @@ export const receivePosts = (json) => ({
     receivedAt: Date.now()
   })
   
-export const fetchPosts = () => dispatch => {
+export const fetchSectors = () => dispatch => {
     dispatch(requestPosts());
     return fetch(`https://api.iextrading.com/1.0/stock/market/sector-performance`)
       .then(response => response.json())
