@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SymbolHeader } from '../../../components/index';
+import { SymbolHeader,SymbolChart,SymbolProfile } from '../../../components/index';
 import { Layout,Row,Col } from 'antd';
 
 const { Header, Footer, Content,Sider } = Layout;    
@@ -19,9 +19,9 @@ class SymbolDetails extends Component {
             <Layout>
                 <Content className='SymbolDetailsContent'>
                     <SymbolHeader />
-                    {/* <SymbolChart />
+                    <SymbolChart />
                     <SymbolProfile />
-                    <SymbolNews />
+                    {/* <SymbolNews />
                     <SymbolPeers />
                     <SymbolFinancils /> */}
                 </Content>

@@ -1,0 +1,12 @@
+.SymbolChart {
+    background-color: white;
+}
+.SymbolChart .ant-radio-group{
+    width: 100%;
+    background-color: #e2e4ef;
+    text-align: left;
+}
+.SymbolChart label {
+    background-color: transparent;   
+    font-weight: bold;
+}

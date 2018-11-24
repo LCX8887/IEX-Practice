@@ -41,8 +41,8 @@ class SectorPerformance extends Component {
                 </Header>
                 <Content className='SectorPerformanceContent'>
                     <Row type='flex' justify='start' gutter={16}>
-                        {sectorsWithBackground.map((sector,index) => <Col span={index>7?8:6}><SectorSummary
-                                                                                    key={index} 
+                        {sectorsWithBackground.map((sector,index) => <Col key={index} span={index>7?8:6}><SectorSummary
+                                                                                    
                                                                                     name = {sector.name}
                                                                                     performance = {sector.performance}
                                                                                     background = {sector.background} />

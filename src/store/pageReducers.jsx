@@ -7,7 +7,8 @@ import NewsReducer from '../components/News/flow/reducer';
 import MyWatchListReducer from '../components/MyWatchList/flow/reducer';
 
 import SymbolHeaderReducer from '../components/SymbolHeader/flow/reducer';
-
+import SymbolChartReducer from '../components/SymbolChart/flow/reducer';
+import SymbolProfileReducer from '../components/SymbolProfile/flow/reducer';
 
 export default { 
     SearchBarReducer,
@@ -18,4 +19,6 @@ export default {
     NewsReducer,
     MyWatchListReducer,
     SymbolHeaderReducer,
+    SymbolChartReducer,
+    SymbolProfileReducer,
 };

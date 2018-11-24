@@ -14,12 +14,8 @@ class App extends Component {
           <SearchBar />
         </Header>
         <Content className='AppContent'>
-          {/* <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb> */}
-          <MarketView />
+          
+          {/* <MarketView /> */}
           <SymbolDetails />
         </Content>
         <Footer className='AppFooter'>

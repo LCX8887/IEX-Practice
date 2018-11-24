@@ -10,3 +10,21 @@
 .SectorSummary .ant-card-cover img{
     height:120px;
 }
+.SectorSummary .green {
+    color:white;
+    background-color: #076907;
+    font-weight: bold;
+}
+.SectorSummary .red {
+    color:white;
+    background-color: #af3232;
+    font-weight: bold;
+}
+.red {
+    color:#af3232;
+    background-color: transparent;
+}
+.green {
+    color:#076907;
+    background-color: transparent;
+}
