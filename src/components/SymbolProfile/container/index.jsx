@@ -22,7 +22,12 @@ class SymbolProfile extends Component {
     componentDidMount() {
         this.props.fetchProfile(this.props.selectedSymbol);
     }
-    
+    componentDidUpdate(prevProps) {
+        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
+            this.props.fetchProfile(this.props.selectedSymbol);
+        }
+        
+    }
 
     render() {
         
@@ -34,25 +39,13 @@ class SymbolProfile extends Component {
                         <p>{this.props.company.description}</p>
                     </Row>
                     <Row className='details'>
-                        {companyHead.map((c,index) => {
-                                                        if(index>4){
-                                                            return <Col span={12} key={c.title}>
-                                                            <p className='title'>{c.title}</p>
-                                                            <p className='value'>{this.props.company[c.value]}</p>
-                                                        </Col>
-                                                        }else{
-                                                            return  <Col span={24} key={c.title}>
-                                                            <p className='title'>{c.title}</p>
-                                                            <div className='tag'>
-                                                                {this.props.company[c.value].filter(t => !!t).map(t => <Tag>
-                                                                                                        <a href=''>{t}</a>
-                                                                                                    </Tag>)}
-                                                            </div>
-                                                        </Col>
-                                                        }
-                                                   })}
-                
-                    </Row>
+                        {companyHead.map((c,index) => 
+                            <Col span={index>4?24:12} key={c.title}>
+                                <p className='title'>{c.title}</p>
+                                <p className='value'>{this.props.company[c.value]}</p>
+                            </Col>                                        
+                        )}
+                    </Row>s
                 </Col>
                 <Col span={12} className='details'>
                     {quoteHead.map((q,index) => <Col span={12} key={q.title}>

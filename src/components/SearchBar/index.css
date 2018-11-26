@@ -1,3 +1,11 @@
+.SearchBar a{
+    color:black;
+    font-weight: bold;
+}
+.SearchBar p{
+    display:inline-block;
+    margin:0 10px;
+}
 .searchResultList {
     max-height:250px;
     width:100%;

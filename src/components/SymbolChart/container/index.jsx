@@ -35,6 +35,12 @@ class SymbolChart extends Component {
     componentDidMount() {
         this.props.fetchChart(this.props.selectedSymbol,this.state.selectedRange);
     }
+    componentDidUpdate(prevProps) {
+        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
+            this.props.fetchChart(this.props.selectedSymbol,this.state.selectedRange);
+        }
+        
+    }
     handleBtnClick = (e) => {
         e.preventDefault();
         this.setState({

@@ -24,7 +24,7 @@ const globalsReducer = (state = initialState, action) => {
         case SELECT_SYMBOL:
             return {
                 ...state,
-               selectedSymbol:action.payload.toLowerCases(),
+               selectedSymbol:action.payload,
             };
         case SELECT_DEPARTMENT:
             return {

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
+import { selectSymbol } from '../../../store/global/actions';
 import SearchResult from '../components/SearchResult';
-import { Row,Col,Input } from 'antd';
+import { Row,Col,Input,Icon } from 'antd';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import 'antd/dist/antd.css'
 
@@ -18,6 +20,7 @@ class SearchBar extends Component {
 
         };  
         this.handleSearchChange = this.handleSearchChange.bind(this);   
+        this.handleSelectSymbol = this.handleSelectSymbol.bind(this);
       
     }
     componentDidMount() {
@@ -37,13 +40,29 @@ class SearchBar extends Component {
             searchResult: result, 
         });
     }
+
+    handleSelectSymbol = e => {
+        e.preventDefault();
+        this.props.selectSymbol(e.target.rel);
+        this.setState({
+            searchKeyWords: '',
+            searchResult:[],
+        });
+
+    }
     render() {    
         var searchResultClassName= classNames({
             'searchResultList': true,
             'hidden': this.state.searchResult.length === 0,
           });
         return (            
-            <Row type='flex' justify='center'>
+            <Row type='flex' justify='center' className='SearchBar'>
+                <Col span={6}>
+                    <Link to='/'>
+                        <Icon type="home" />
+                        <p>IEX Practice</p>
+                    </Link>
+                </Col>
                 <Col span={16}>
                     <Search 
                         placeholder='search'
@@ -52,6 +71,7 @@ class SearchBar extends Component {
                     <SearchResult
                         searchResult={this.state.searchResult}
                         searchResultClassName={searchResultClassName}
+                        handleSelectSymbol = {this.handleSelectSymbol}
                     />
                 </Col>
             </Row>
@@ -65,7 +85,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchPosts: fetchPosts,
+    fetchPosts,
+    selectSymbol,
 };
 
 function isMatching(value,obj){

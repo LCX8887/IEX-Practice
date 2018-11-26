@@ -16,6 +16,12 @@ class SymbolHeader extends Component {
     componentDidMount() {
         this.props.fetchPosts(this.props.selectedSymbol);
     }
+    componentDidUpdate(prevProps) {
+        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
+            this.props.fetchPosts(this.props.selectedSymbol);
+        }
+        
+    }
     triggerWatchList = (e) => {
         e.preventDefault();
         const selected = this.props.watchList.indexOf(this.props.quote.symbol)>=0? true:false;
