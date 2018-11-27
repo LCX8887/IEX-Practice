@@ -10,7 +10,7 @@ export const receivePosts = (json) => ({
     receivedAt: Date.now()
   })
   
-export const fetchPosts = () => dispatch => {
+export const fetchPosts = (target) => dispatch => {
     dispatch(requestPosts());
     return fetch(`https://api.iextrading.com/1.0/ref-data/symbols`)
       .then(response => response.json())

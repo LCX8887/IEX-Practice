@@ -31,16 +31,12 @@ class SymbolChart extends Component {
         };  
         this.handleBtnClick = this.handleBtnClick.bind(this);
         this.getDataFilter = this.getDataFilter.bind(this);
+        
     }
     componentDidMount() {
         this.props.fetchChart(this.props.selectedSymbol,this.state.selectedRange);
     }
-    componentDidUpdate(prevProps) {
-        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
-            this.props.fetchChart(this.props.selectedSymbol,this.state.selectedRange);
-        }
-        
-    }
+  
     handleBtnClick = (e) => {
         e.preventDefault();
         this.setState({
@@ -58,15 +54,22 @@ class SymbolChart extends Component {
             dataFilter.fields = ['label','average'];
         }else{
             dataFilter.fields = ['date','close'];
-        }
+        }        
         return dataFilter;
     }
+ 
     render() {
         const ds = new DataSet();       
         const dataFilter = this.getDataFilter(this.state.selectedRange);
         const dv = ds.createView()
             .source(this.props.chartData)
-            .transform(dataFilter);        
+            .transform(dataFilter)
+            .transform({
+                type: 'filter',
+                callback(row) {
+                  return row.average !== -1;
+                }
+              });        
         const cols = {
                 average: {range: [0, 1]}
         };

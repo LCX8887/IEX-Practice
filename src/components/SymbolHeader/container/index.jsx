@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { fetchPosts } from '../flow/actions';
+import { fetchHeader } from '../flow/actions';
 import { addToWatchList,delFromWatchList } from '../../../store/global/actions';
 import SymbolHeaderBoard from '../component/SymbolHeaderBoard';
 import classNames from 'classnames';
@@ -14,14 +14,9 @@ class SymbolHeader extends Component {
         this.triggerWatchList = this.triggerWatchList.bind(this);
     }
     componentDidMount() {
-        this.props.fetchPosts(this.props.selectedSymbol);
+        this.props.fetchHeader(this.props.selectedSymbol);
     }
-    componentDidUpdate(prevProps) {
-        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
-            this.props.fetchPosts(this.props.selectedSymbol);
-        }
-        
-    }
+   
     triggerWatchList = (e) => {
         e.preventDefault();
         const selected = this.props.watchList.indexOf(this.props.quote.symbol)>=0? true:false;
@@ -84,7 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    fetchPosts: fetchPosts,
+    fetchHeader,
     addToWatchList:addToWatchList,
     delFromWatchList:delFromWatchList,
 };

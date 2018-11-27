@@ -10,8 +10,8 @@ class App extends Component {
   render() {
     const header = <Route path="/" component={SearchBar}/>;
     const content = <Switch>
-                      <Route exact path="/" component={MarketView}/>
-                      <Route exact path='/stocks/:selectedSymbol' component={SymbolDetails} />          
+                      <Route exact path='/stocks/:selectedSymbol' component={SymbolDetails} />
+                      <Route exact path="/" component={MarketView}/>          
                     </Switch>
     const footer = <div>
                       <p>Data provided for free by 

@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchPosts } from '../flow/actions';
 import { selectSymbol } from '../../../store/global/actions';
+import { fetchProfile } from '../../SymbolProfile/flow/actions';
+import { fetchChart } from '../../SymbolChart/flow/actions';
+import { fetchHeader } from '../../SymbolHeader/flow/actions';
 import SearchResult from '../components/SearchResult';
 import { Row,Col,Input,Icon } from 'antd';
 import { Link } from 'react-router-dom';
@@ -26,6 +29,7 @@ class SearchBar extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
+   
     handleSearchChange = e => {
         const value = e.target.value;
         const { symbols } = this.props;
@@ -42,8 +46,12 @@ class SearchBar extends Component {
     }
 
     handleSelectSymbol = e => {
+        
         e.preventDefault();
         this.props.selectSymbol(e.target.rel);
+        this.props.fetchChart(e.target.rel,'1D');
+        this.props.fetchHeader(e.target.rel);
+        this.props.fetchProfile(e.target.rel);
         this.setState({
             searchKeyWords: '',
             searchResult:[],
@@ -67,6 +75,7 @@ class SearchBar extends Component {
                     <Search 
                         placeholder='search'
                         onChange={this.handleSearchChange}
+                        value={this.state.searchKeyWords}
                     />
                     <SearchResult
                         searchResult={this.state.searchResult}
@@ -87,6 +96,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     fetchPosts,
     selectSymbol,
+    fetchChart,
+    fetchHeader,
+    fetchProfile,
 };
 
 function isMatching(value,obj){

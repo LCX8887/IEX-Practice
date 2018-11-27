@@ -22,12 +22,12 @@ class SymbolProfile extends Component {
     componentDidMount() {
         this.props.fetchProfile(this.props.selectedSymbol);
     }
-    componentDidUpdate(prevProps) {
-        if(prevProps.selectedSymbol !== this.props.selectedSymbol){
-            this.props.fetchProfile(this.props.selectedSymbol);
-        }
+    // componentDidUpdate(prevProps) {
+    //     if(prevProps.selectedSymbol !== this.props.selectedSymbol){
+    //         this.props.fetchProfile(this.props.selectedSymbol);
+    //     }
         
-    }
+    // }
 
     render() {
         

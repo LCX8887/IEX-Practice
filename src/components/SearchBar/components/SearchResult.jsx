@@ -7,7 +7,7 @@ const SearchResult = ({ searchResult,searchResultClassName,handleSelectSymbol })
             <List className={searchResultClassName}
                 itemLayout="horizontal"
                 dataSource={searchResult}
-                renderItem={item => (<List.Item onClick={handleSelectSymbol}><Link rel={item.symbol} to='/stocks/${item.symbol}'>{item.symbol}-{item.name}</Link></List.Item>)}    
+                renderItem={item => (<List.Item onClick={handleSelectSymbol}><Link rel={item.symbol} to={`/stocks/${item.symbol}`}>{item.symbol}-{item.name}</Link></List.Item>)}    
                
             />
     )
