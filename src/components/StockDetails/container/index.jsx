@@ -6,7 +6,7 @@ import SymbolProfile from "../component/SymbolProfile";
 import { fetchSymbolDetails, fetchChart } from "../flow/actions";
 import {
   addToWatchList,
-  delFromWatchList
+  delFromWatchList,
 } from "../../../store/global/actions";
 import { Layout, Row, Col } from "antd";
 const { Header, Footer, Content, Sider } = Layout;
@@ -16,7 +16,7 @@ class StockDetails extends Component {
     super(props);
     this.state = {
       chartRange: ["1D", "1M", "3M", "6M", "YTD", "1Y", "2Y", "5Y"],
-      selectedRange: "1D"
+      selectedRange: "1D",
     };
   }
   componentDidMount() {
@@ -27,7 +27,7 @@ class StockDetails extends Component {
       this.props.fetchSymbolDetails(this.props.selectedSymbol);
     }
   }
-  triggerWatchList = e => {
+  triggerWatchList = (e) => {
     e.preventDefault();
     const selected =
       this.props.watchList.indexOf(this.props.quote.symbol) >= 0 ? true : false;
@@ -38,9 +38,9 @@ class StockDetails extends Component {
     }
   };
 
-  handleChartChange = e => {
+  handleChartChange = (e) => {
     this.setState({
-      selectedRange: e.target.value
+      selectedRange: e.target.value,
     });
     this.props.fetchChart(this.props.selectedSymbol, e.target.value);
   };
@@ -65,17 +65,17 @@ class StockDetails extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   quote: state.StockDetailsReducer.quote,
   book: state.StockDetailsReducer.book,
   company: state.StockDetailsReducer.company,
   chart: state.StockDetailsReducer.chart,
   peers: state.StockDetailsReducer.peers,
-  watchList: state.global.watchList
+  watchList: state.global.watchList,
 });
 
 const mapDispatchToProps = {
-  fetchSymbolDetails
+  fetchSymbolDetails,
 };
 export default connect(
   mapStateToProps,

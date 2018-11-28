@@ -15,18 +15,19 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchKeyword: ""
+      searchKeyword: "",
     };
   }
   componentDidMount() {
     this.props.fetchSymbols();
   }
 
-  handleSearchChange = e => {
-    this.setState({ searchKeyword: e.target.value });
+  handleSearchChange = (e) => {
+    const { value } = e.target;
+    this.setState((prevState) => ({ searchKeyword: value }));
   };
 
-  handleSelectSymbol = e => {
+  handleSelectSymbol = (e) => {
     this.setState({ searchKeyword: "" });
     this.props.selectSymbol(e.target.value);
   };
@@ -36,14 +37,14 @@ class SearchBar extends Component {
     const searchText = searchKeyword.toLowerCase();
     const { symbols } = this.props;
     const filterData = symbols.filter(
-      s =>
+      (s) =>
         s.name.toLowerCase().indexOf(searchText) > -1 ||
         s.symbol.toLowerCase().indexOf(searchText) > -1
     );
 
     const searchResultClassName = classNames({
       searchResultList: true,
-      hidden: filterData.length === 0 || searchKeyword === ""
+      hidden: filterData.length === 0 || searchKeyword === "",
     });
     return (
       <Row type="flex" justify="center" className="SearchBar">
@@ -70,13 +71,13 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  symbols: state.SearchBarReducer.symbols
+const mapStateToProps = (state) => ({
+  symbols: state.SearchBarReducer.symbols,
 });
 
 const mapDispatchToProps = {
   fetchSymbols,
-  selectSymbol
+  selectSymbol,
 };
 
 SearchBar.propTypes = {};
