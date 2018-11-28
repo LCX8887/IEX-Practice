@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import { fetchChart } from "../flow/actions";
 import { Radio } from "antd";
 import {
   G2,
@@ -23,31 +22,9 @@ import DataSet from "@antv/data-set";
 class SymbolChart extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      range: ["1D", "1M", "3M", "6M", "YTD", "1Y", "2Y", "5Y"],
-      selectedRange: "1D"
-    };
-    this.handleBtnClick = this.handleBtnClick.bind(this);
-    this.getDataFilter = this.getDataFilter.bind(this);
+    this.state = {};
   }
-  componentDidMount() {
-    this.props.fetchChart(this.props.selectedSymbol, this.state.selectedRange);
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedSymbol !== this.props.selectedSymbol) {
-      this.props.fetchChart(
-        this.props.selectedSymbol,
-        this.state.selectedRange
-      );
-    }
-  }
-  handleBtnClick = e => {
-    e.preventDefault();
-    this.setState({
-      selectedRange: e.target.value
-    });
-    this.props.fetchChart(this.props.selectedSymbol, e.target.value);
-  };
+
   getDataFilter = str => {
     let dataFilter = {
       type: "pick",
@@ -64,7 +41,7 @@ class SymbolChart extends Component {
 
   render() {
     const ds = new DataSet();
-    const dataFilter = this.getDataFilter(this.state.selectedRange);
+    const dataFilter = this.getDataFilter(this.props.selectedRange);
     const dv = ds
       .createView()
       .source(this.props.chartData)
@@ -94,17 +71,10 @@ class SymbolChart extends Component {
               color="#af3232"
             />
           </View>
-          {/* <View data={dv}>
-                        <Geom
-                            type="interval"
-                            position={dataFilter.fields[0]+'*'+dataFilter.fields[1]}
-                           
-                        />
-                    </View> */}
         </Chart>
         <Radio.Group defaultValue="1D">
-          {this.state.range.map(r => (
-            <Radio.Button value={r} onClick={this.handleBtnClick}>
+          {this.props.chartRange.map(r => (
+            <Radio.Button value={r} onClick={this.handleChartChange}>
               {r}
             </Radio.Button>
           ))}
@@ -114,19 +84,7 @@ class SymbolChart extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  //selectedSymbol: state.global.selectedSymbol,
-  chartData: state.SymbolChartReducer.chartData
-});
-
-const mapDispatchToProps = {
-  fetchChart
-};
-
 SymbolChart.propTypes = {};
 SymbolChart.defaultProps = {};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SymbolChart);
+export default SymbolChart;

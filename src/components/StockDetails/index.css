@@ -1,0 +1,187 @@
+/* .SymbolDetailsContent {
+  padding: 40px;
+}
+.SymbolChart {
+  background-color: white;
+}
+.SymbolChart .ant-radio-group {
+  width: 100%;
+  background-color: #e2e4ef;
+  text-align: left;
+}
+.SymbolChart label {
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.SymbolHeaderBoard {
+  background-color: white;
+  padding: 10px;
+  position: relative;
+}
+.SymbolHeaderBoard p {
+  text-align: left;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .name {
+  text-align: left;
+  position: relative;
+}
+.SymbolHeaderBoard .name p,
+b {
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .name button {
+  position: absolute;
+  right: 0px;
+  border: none;
+  background-color: transparent;
+}
+.SymbolHeaderBoard .name button:focus {
+  outline: none;
+}
+.SymbolHeaderBoard .change {
+  text-align: left;
+}
+.SymbolHeaderBoard .change p,
+b {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .change b {
+  font-size: 28px;
+}
+.SymbolHeaderBoard .change p {
+  font-size: 16px;
+}
+.SymbolHeaderBoard .changePercent {
+  text-align: left;
+}
+.SymbolHeaderBoard .changePercent p,
+b {
+  display: inline-block;
+}
+.SymbolHeaderBoard .afterHours {
+  font-size: 10px;
+}
+.SymbolHeaderBoard .previousClose {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  font-size: 10px;
+}
+
+.SymbolProfile {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+}
+.SymbolProfile .details div {
+  padding: 0 8px 16px 8px;
+}
+
+.SymbolProfile .title {
+  margin-bottom: 8px;
+}
+.SymbolProfile .value {
+  margin: 0;
+  font-weight: bold;
+} */
+
+.SymbolDetailsContent {
+  padding: 40px;
+}
+.SymbolChart {
+  background-color: white;
+}
+.SymbolChart .ant-radio-group {
+  width: 100%;
+  background-color: #e2e4ef;
+  text-align: left;
+}
+.SymbolChart label {
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.SymbolHeaderBoard {
+  background-color: white;
+  padding: 10px;
+  position: relative;
+}
+.SymbolHeaderBoard p {
+  text-align: left;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .name {
+  text-align: left;
+  position: relative;
+}
+.SymbolHeaderBoard .name p,
+b {
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .name button {
+  position: absolute;
+  right: 0px;
+  border: none;
+  background-color: transparent;
+}
+.SymbolHeaderBoard .name button:focus {
+  outline: none;
+}
+.SymbolHeaderBoard .change {
+  text-align: left;
+}
+.SymbolHeaderBoard .change p,
+b {
+  display: inline-block;
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+.SymbolHeaderBoard .change b {
+  font-size: 28px;
+}
+.SymbolHeaderBoard .change p {
+  font-size: 16px;
+}
+.SymbolHeaderBoard .changePercent {
+  text-align: left;
+}
+.SymbolHeaderBoard .changePercent p,
+b {
+  display: inline-block;
+}
+.SymbolHeaderBoard .afterHours {
+  font-size: 10px;
+}
+.SymbolHeaderBoard .previousClose {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+  font-size: 10px;
+}
+
+.SymbolProfile {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+}
+.SymbolProfile .details div {
+  padding: 0 8px 16px 8px;
+}
+
+.SymbolProfile .title {
+  margin-bottom: 8px;
+}
+.SymbolProfile .value {
+  margin: 0;
+  font-weight: bold;
+}

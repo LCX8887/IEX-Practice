@@ -1,126 +1,88 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import { fetchPosts } from '../flow/actions';
-import { selectSymbol } from '../../../store/global/actions';
-import { fetchProfile } from '../../SymbolProfile/flow/actions';
-import { fetchChart } from '../../SymbolChart/flow/actions';
-import { fetchHeader } from '../../SymbolHeader/flow/actions';
-import SearchResult from '../components/SearchResult';
-import { Row,Col,Input,Icon } from 'antd';
-import { Link } from 'react-router-dom';
-import classNames from 'classnames';
-import 'antd/dist/antd.css'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import propTypes from "prop-types";
+import { fetchSymbols } from "../flow/actions";
+import { selectSymbol } from "../../../store/global/actions";
+import SearchResult from "../components/SearchResult";
+import { Row, Col, Input, Icon } from "antd";
+import { Link } from "react-router-dom";
+import classNames from "classnames";
+import "antd/dist/antd.css";
 
 const Search = Input.Search;
 
 class SearchBar extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-           searchKeyWords: '',
-           searchResult: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchKeyword: ""
+    };
+  }
+  componentDidMount() {
+    this.props.fetchSymbols();
+  }
 
-        };  
-        this.handleSearchChange = this.handleSearchChange.bind(this);   
-        this.handleSelectSymbol = this.handleSelectSymbol.bind(this);
-      
-    }
-    componentDidMount() {
-        this.props.fetchPosts();
-    }
-   
-    handleSearchChange = e => {
-        const value = e.target.value;
-        const { symbols } = this.props;
-        var result = [];
-        for(var i=0; i<symbols.length;i++){
-            if(isMatching(value,symbols[i])){
-                result.push(symbols[i]);
-            }
-        }
-        this.setState({
-            searchKeyWords:value,
-            searchResult: result, 
-        });
-    }
+  handleSearchChange = e => {
+    this.setState({ searchKeyword: e.target.value });
+  };
 
-    handleSelectSymbol = e => {
-        
-        e.preventDefault();
-        this.props.selectSymbol(e.target.rel);
-        this.props.fetchChart(e.target.rel,'1D');
-        this.props.fetchHeader(e.target.rel);
-        this.props.fetchProfile(e.target.rel);
-        this.setState({
-            searchKeyWords: '',
-            searchResult:[],
-        });
+  handleSelectSymbol = e => {
+    this.setState({ searchKeyword: "" });
+    this.props.selectSymbol(e.target.value);
+  };
 
-    }
-    render() {    
-        var searchResultClassName= classNames({
-            'searchResultList': true,
-            'hidden': this.state.searchResult.length === 0,
-          });
-        return (            
-            <Row type='flex' justify='center' className='SearchBar'>
-                <Col span={6}>
-                    <Link to='/'>
-                        <Icon type="home" />
-                        <p>IEX Practice</p>
-                    </Link>
-                </Col>
-                <Col span={16}>
-                    <Search 
-                        placeholder='search'
-                        onChange={this.handleSearchChange}
-                        value={this.state.searchKeyWords}
-                    />
-                    <SearchResult
-                        searchResult={this.state.searchResult}
-                        searchResultClassName={searchResultClassName}
-                        handleSelectSymbol = {this.handleSelectSymbol}
-                    />
-                </Col>
-            </Row>
-        );
-    }
+  render() {
+    const { searchKeyword } = this.state;
+    const searchText = searchKeyword.toLowerCase();
+    const { symbols } = this.props;
+    const filterData = symbols.filter(
+      s =>
+        s.name.toLowerCase().indexOf(searchText) > -1 ||
+        s.symbol.toLowerCase().indexOf(searchText) > -1
+    );
+
+    const searchResultClassName = classNames({
+      searchResultList: true,
+      hidden: filterData.length === 0 || searchKeyword === ""
+    });
+    return (
+      <Row type="flex" justify="center" className="SearchBar">
+        <Col span={6}>
+          <Link to="/">
+            <Icon type="home" />
+            <p>IEX Practice</p>
+          </Link>
+        </Col>
+        <Col span={16}>
+          <Search
+            placeholder="search"
+            onChange={this.handleSearchChange}
+            value={searchKeyword}
+          />
+          <SearchResult
+            searchResult={filterData}
+            searchResultClassName={searchResultClassName}
+            handleSelectSymbol={this.handleSelectSymbol}
+          />
+        </Col>
+      </Row>
+    );
+  }
 }
 
-
 const mapStateToProps = state => ({
-    symbols:state.SearchBarReducer.symbols,
+  symbols: state.SearchBarReducer.symbols
 });
 
 const mapDispatchToProps = {
-    fetchPosts,
-    selectSymbol,
-    fetchChart,
-    fetchHeader,
-    fetchProfile,
+  fetchSymbols,
+  selectSymbol
 };
 
-function isMatching(value,obj){
-    var symbol = obj.symbol.toUpperCase();
-    var name = obj.name.toUpperCase();
-    var keyWord = value.toUpperCase();
-    if(keyWord === ''){
-        return false;
-    }else if(symbol.indexOf(keyWord) === 0 || name.indexOf(keyWord) === 0){
-        return true;
-    }else{
-        return false;
-    }
-}
-SearchBar.propTypes = {
-
-}
-SearchBar.defaultProps = {
-    //symbols:[],
-}
+SearchBar.propTypes = {};
+SearchBar.defaultProps = {};
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SearchBar);

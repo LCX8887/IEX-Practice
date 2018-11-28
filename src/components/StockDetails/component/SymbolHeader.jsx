@@ -1,41 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import { fetchHeader } from "../flow/actions";
-import {
-  addToWatchList,
-  delFromWatchList
-} from "../../../store/global/actions";
-import SymbolHeaderBoard from "../component/SymbolHeaderBoard";
+import SymbolHeaderBoard from "./SymbolHeaderBoard";
 import classNames from "classnames";
 
 class SymbolHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.triggerWatchList = this.triggerWatchList.bind(this);
   }
-  componentDidMount() {
-    this.props.fetchHeader(this.props.selectedSymbol);
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedSymbol !== this.props.selectedSymbol) {
-      this.props.fetchHeader(this.props.selectedSymbol);
-    }
-  }
-  triggerWatchList = e => {
-    e.preventDefault();
-    const selected =
-      this.props.watchList.indexOf(this.props.quote.symbol) >= 0 ? true : false;
-    if (selected) {
-      this.props.delFromWatchList(this.props.quote.symbol);
-    } else {
-      this.props.addToWatchList(this.props.quote.symbol);
-    }
-  };
+
   render() {
-    const { quote, watchList } = this.props;
-    const triggerWatchList = this.triggerWatchList;
+    const { quote, watchList, triggerWatchList } = this.props;
     const symbol = "(" + quote.symbol + ")";
     const change = quote.change > 0 ? "+" + quote.change : quote.change;
     const changePercent2 = (quote.changePercent * 100).toFixed(2) + "%";
@@ -86,24 +62,7 @@ class SymbolHeader extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  //selectedSymbol:state.global.selectedSymbol,
-  watchList: state.global.watchList,
-  quote: state.SymbolHeaderReducer.quote
-});
-
-const mapDispatchToProps = {
-  fetchHeader,
-  addToWatchList: addToWatchList,
-  delFromWatchList: delFromWatchList
-};
-
 SymbolHeader.propTypes = {};
-SymbolHeader.defaultProps = {
-  //symbols:[],
-};
+SymbolHeader.defaultProps = {};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SymbolHeader);
+export default SymbolHeader;

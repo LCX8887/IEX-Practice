@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import { fetchProfile } from "../flow/actions";
 import { Layout, Row, Col, Tag } from "antd";
 
 const profileHead = [{ title: "Profile", value: "description" }];
@@ -32,14 +31,7 @@ class SymbolProfile extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.fetchProfile(this.props.selectedSymbol);
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedSymbol !== this.props.selectedSymbol) {
-      this.props.fetchProfile(this.props.selectedSymbol);
-    }
-  }
+
   render() {
     return (
       <Row className="SymbolProfile">
@@ -78,20 +70,7 @@ class SymbolProfile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  //selectedSymbol: state.global.selectedSymbol,
-  company: state.SymbolProfileReducer.company,
-  quote: state.SymbolProfileReducer.quote
-});
-
-const mapDispatchToProps = {
-  fetchProfile
-};
-
 SymbolProfile.propTypes = {};
 SymbolProfile.defaultProps = {};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SymbolProfile);
+export default SymbolProfile;

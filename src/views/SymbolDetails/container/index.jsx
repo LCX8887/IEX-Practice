@@ -1,34 +1,23 @@
-import React, { Component } from 'react';
-import { SymbolHeader,SymbolChart,SymbolProfile } from '../../../components/index';
-import { Layout,Row,Col } from 'antd';
+import React, { Component } from "react";
+import { StockDetails } from "../../../components/index";
+import { Layout, Row, Col } from "antd";
+import { withRouter } from "react-router-dom";
 
-const { Header, Footer, Content,Sider } = Layout;    
-
+const { Header, Footer, Content, Sider } = Layout;
 
 class SymbolDetails extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          
-        };  
-    
-    }
-   
-    render() {      
-        return (
-            <Layout>
-                <Content className='SymbolDetailsContent'>
-                    <SymbolHeader />
-                    <SymbolChart />
-                    <SymbolProfile />
-                    {/* <SymbolNews />
-                    <SymbolPeers />
-                    <SymbolFinancils /> */}
-                </Content>
-            </Layout>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  render() {
+    const location = this.props.match.params.selectedSymbol;
+    return (
+      <div>
+        <StockDetails selectedSymbol={location} />
+      </div>
+    );
+  }
 }
 
-
-export default SymbolDetails;
+export default withRouter(SymbolDetails);
