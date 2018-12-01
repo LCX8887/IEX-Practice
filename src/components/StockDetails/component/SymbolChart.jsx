@@ -74,7 +74,7 @@ class SymbolChart extends Component {
         </Chart>
         <Radio.Group defaultValue="1D">
           {this.props.chartRange.map(r => (
-            <Radio.Button value={r} onClick={this.handleChartChange}>
+            <Radio.Button value={r} onClick={this.props.handleChartChange}>
               {r}
             </Radio.Button>
           ))}

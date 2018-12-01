@@ -37,7 +37,7 @@ class SymbolProfile extends Component {
       <Row className="SymbolProfile">
         <Col span={12}>
           <Row>
-            <h3>Profile</h3>
+            <h2>Profile</h2>
             <p>{this.props.company.description}</p>
           </Row>
           <Row className="details">

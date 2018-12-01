@@ -13,7 +13,7 @@ class SymbolDetails extends Component {
   render() {
     const location = this.props.match.params.selectedSymbol;
     return (
-      <div>
+      <div className="StockDetails">
         <StockDetails selectedSymbol={location} />
       </div>
     );

@@ -2,7 +2,8 @@ import {
   RECEIVE_POSTS,
   REQUEST_POSTS,
   RECEIVE_CHART,
-  RECEIVE_POSTS_ERROR,
+  RECEIVE_PEERS,
+  RECEIVE_POSTS_ERROR
 } from "./actionTypes";
 
 const initialState = {
@@ -11,9 +12,10 @@ const initialState = {
   company: {},
   chart: [],
   peers: [],
+  peersData: {},
 
   isFetching: false,
-  lastUpdated: null,
+  lastUpdated: null
 };
 
 const StockDetailsReducer = (state = initialState, action) => {
@@ -21,7 +23,7 @@ const StockDetailsReducer = (state = initialState, action) => {
     case REQUEST_POSTS:
       return {
         ...state,
-        isFetching: true,
+        isFetching: true
       };
     case RECEIVE_POSTS:
       return {
@@ -32,7 +34,7 @@ const StockDetailsReducer = (state = initialState, action) => {
         company: action.payload.company,
         chart: action.payload.chart,
         peers: action.payload.peers,
-        lastUpdated: action.receivedAt,
+        lastUpdated: action.receivedAt
       };
     case RECEIVE_POSTS_ERROR:
       return {
@@ -41,13 +43,19 @@ const StockDetailsReducer = (state = initialState, action) => {
         company: {},
         chart: [],
         peers: [],
-        isFetching: false,
+        isFetching: false
       };
     case RECEIVE_CHART:
       return {
         ...state,
         isFetching: false,
-        chart: action.payload,
+        chart: action.payload
+      };
+    case RECEIVE_PEERS:
+      return {
+        ...state,
+        isFetching: false,
+        peersData: action.payload
       };
     default:
       return state;

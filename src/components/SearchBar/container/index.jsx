@@ -16,35 +16,39 @@ class SearchBar extends Component {
     super(props);
     this.state = {
       searchKeyword: "",
+      searchResult: []
     };
   }
   componentDidMount() {
     this.props.fetchSymbols();
   }
 
-  handleSearchChange = (e) => {
-    const { value } = e.target;
-    this.setState((prevState) => ({ searchKeyword: value }));
-  };
-
-  handleSelectSymbol = (e) => {
-    this.setState({ searchKeyword: "" });
-    this.props.selectSymbol(e.target.value);
-  };
-
-  render() {
-    const { searchKeyword } = this.state;
-    const searchText = searchKeyword.toLowerCase();
+  handleSearchChange = e => {
+    const value = e.target.value;
     const { symbols } = this.props;
-    const filterData = symbols.filter(
-      (s) =>
-        s.name.toLowerCase().indexOf(searchText) > -1 ||
-        s.symbol.toLowerCase().indexOf(searchText) > -1
-    );
+    let filterData = [];
+    for (var i = 0; i < symbols.length; i++) {
+      if (isMatching(value, symbols[i])) {
+        filterData.push(symbols[i]);
+      }
+    }
+    this.setState({
+      searchKeyword: value,
+      searchResult: filterData
+    });
+  };
 
+  handleSelectSymbol = e => {
+    this.props.selectSymbol(e.target.rel);
+    this.setState({
+      searchKeyword: "",
+      searchResult: []
+    });
+  };
+  render() {
     const searchResultClassName = classNames({
       searchResultList: true,
-      hidden: filterData.length === 0 || searchKeyword === "",
+      hidden: this.state.searchResult.length === 0
     });
     return (
       <Row type="flex" justify="center" className="SearchBar">
@@ -58,10 +62,10 @@ class SearchBar extends Component {
           <Search
             placeholder="search"
             onChange={this.handleSearchChange}
-            value={searchKeyword}
+            value={this.state.searchKeyword}
           />
           <SearchResult
-            searchResult={filterData}
+            searchResult={this.state.searchResult}
             searchResultClassName={searchResultClassName}
             handleSelectSymbol={this.handleSelectSymbol}
           />
@@ -71,15 +75,27 @@ class SearchBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  symbols: state.SearchBarReducer.symbols,
+const mapStateToProps = state => ({
+  symbols: state.SearchBarReducer.symbols
 });
 
 const mapDispatchToProps = {
   fetchSymbols,
-  selectSymbol,
+  selectSymbol
 };
 
+function isMatching(value, obj) {
+  const symbol = obj.symbol.toUpperCase();
+  const name = obj.name.toUpperCase();
+  const keyWord = value.toUpperCase();
+  if (keyWord === "") {
+    return false;
+  } else if (symbol.indexOf(keyWord) === 0 || name.indexOf(keyWord) === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
 SearchBar.propTypes = {};
 SearchBar.defaultProps = {};
 

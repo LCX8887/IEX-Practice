@@ -92,9 +92,6 @@ b {
   font-weight: bold;
 } */
 
-.SymbolDetailsContent {
-  padding: 40px;
-}
 .SymbolChart {
   background-color: white;
 }
@@ -184,4 +181,15 @@ b {
 .SymbolProfile .value {
   margin: 0;
   font-weight: bold;
+}
+.SymbolPeers {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+}
+.SymbolPeers h2 {
+  display: inline-block;
+}
+.SymbolPeers button {
+  float: right;
 }
