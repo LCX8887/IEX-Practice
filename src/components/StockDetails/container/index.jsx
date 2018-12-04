@@ -4,6 +4,7 @@ import SymbolChart from "../component/SymbolChart";
 import SymbolHeader from "../component/SymbolHeader";
 import SymbolProfile from "../component/SymbolProfile";
 import SymbolPeers from "../component/SymbolPeers";
+import CustomizePeers from "../component/CustomizePeers";
 import { fetchSymbolDetails, fetchChart } from "../flow/actions";
 import {
   addToWatchList,
@@ -46,7 +47,7 @@ class StockDetails extends Component {
     });
     this.props.fetchChart(this.props.selectedSymbol, e.target.value);
   };
-  handleSetPeers = e => {};
+
   render() {
     const {
       quote,
@@ -58,6 +59,7 @@ class StockDetails extends Component {
       watchList
     } = this.props;
     const { selectedRange, chartRange } = this.state;
+
     return (
       <div className="StockDetailsContent">
         <SymbolHeader
@@ -72,10 +74,7 @@ class StockDetails extends Component {
           handleChartChange={this.handleChartChange}
         />
         <SymbolProfile company={company} quote={quote} />
-        <SymbolPeers
-          peersData={peersData}
-          handleSetPeers={this.handleSetPeers}
-        />
+        <SymbolPeers peersData={peersData} />
       </div>
     );
   }
@@ -96,6 +95,7 @@ const mapDispatchToProps = {
   addToWatchList,
   delFromWatchList
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
