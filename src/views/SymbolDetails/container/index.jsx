@@ -16,7 +16,7 @@ class SymbolDetails extends Component {
       <div className="StockDetails">
         <StockDetails selectedSymbol={location} />
       </div>
-    );
+    ); 
   }
 }
 

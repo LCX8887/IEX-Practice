@@ -1,43 +1,44 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import SpecialListTable from '../../SpecialList/components/SpecialListTable';
-import { Row,Col } from 'antd';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import propTypes from "prop-types";
+import SpecialListTable from "../../UI/SpecialListTable/index";
 
+const columns = [
+  {
+    title: "Symbol",
+    dataIndex: "symbol",
+    width: "45%",
+    key: "Symbol",
+    render: (text, record) => {
+      return (
+        <div className="Symbol">
+          <p>{record.symbol}</p>
+          <p>{record.companyName}</p>
+        </div>
+      );
+    }
+  },
+  {
+    title: "Change",
+    dataIndex: "change",
+    key: "Change"
+  },
+  {
+    title: "Price",
+    dataIndex: "latestPrice",
+    key: "Price"
+  }
+];
+const target = "infocus";
+const title = "Recently in focus";
 class InFocus extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-           columns:[{
-                    title: 'Symbol',
-                    dataIndex: 'coName',
-                    key: 'Symbol',
-                    },{
-                    title: 'Change',
-                    dataIndex: 'change',
-                    key: 'Change',
-                    }, {
-                    title: 'Price',
-                    dataIndex: 'latestPrice',
-                    key: 'Price',}],
-            target:'infocus',
-            title:'Recently in focus',
-        };  
-           
-    }
-   
-    
-    render() {        
-        return (
-            <div className='InFocus'>            
-              <SpecialListTable columns= {this.state.columns}
-                                            target = {this.state.target} title={this.state.title}/>
-          </div>
-        );
-    }
+  render() {
+    return (
+      <div className="InFocus">
+        <SpecialListTable columns={columns} target={target} title={title} />
+      </div>
+    );
+  }
 }
 
-
 export default InFocus;
-
-
