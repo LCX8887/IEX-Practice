@@ -1,18 +1,17 @@
 .IPO {
-    background-color:white;
-    padding:10px;
-
+  background-color: white;
+  padding: 10px;
 }
-.IPO h2 {
-    text-align: left;
+.IPO .ant-table-title {
+  text-align: left;
+  font-size: 1.5em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
 }
 
 .IPO .ant-table-content {
-    font-size: 0.3em;
+  font-size: 0.3em;
 }
-.IPO .ant-table {
-    overflow: auto;
-}
-.IPO th{
-    min-width: 90px;
+.IPO th {
+  min-width: 90px;
 }

@@ -1,116 +1,144 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import propTypes from 'prop-types';
-import IPOTable from '../components/IPOTable';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import propTypes from "prop-types";
+import { fetchIPOs } from "../flow/actions";
+import { Table } from "antd";
 
-
-
-
-
+const IPOTodayTitle = "Today's Expected IPOs";
+const IPOCalendarTitle = "IPO Calendar";
+const IPOTodayTarget = "today-ipos";
+const IPOCalendarTarget = "upcoming-ipos";
+const IPOTodayColumns = [
+  {
+    title: "Symbol",
+    dataIndex: "Symbol",
+    key: "Symbol"
+  },
+  {
+    title: "Company",
+    dataIndex: "Company",
+    key: "Company"
+  },
+  {
+    title: "Price",
+    dataIndex: "Price",
+    key: "Price"
+  },
+  {
+    title: "Shares",
+    dataIndex: "Shares",
+    key: "Shares"
+  },
+  {
+    title: "Amount",
+    dataIndex: "Amount",
+    key: "Amount"
+  },
+  {
+    title: "Percent",
+    dataIndex: "Percent",
+    key: "Percent"
+  },
+  {
+    title: "Market",
+    dataIndex: "Market",
+    key: "Market"
+  }
+];
+const IPOCalendarColumns = [
+  {
+    title: "Symbol",
+    dataIndex: "Symbol",
+    key: "Symbol"
+  },
+  {
+    title: "Company",
+    dataIndex: "Company",
+    key: "Company"
+  },
+  {
+    title: "Expected",
+    dataIndex: "Expected",
+    key: "Expected"
+  },
+  {
+    title: "Price",
+    dataIndex: "Price",
+    key: "Price"
+  },
+  {
+    title: "Shares",
+    dataIndex: "Shares",
+    key: "Shares"
+  },
+  {
+    title: "Amount",
+    dataIndex: "Amount",
+    key: "Amount"
+  },
+  {
+    title: "Float",
+    dataIndex: "Float",
+    key: "Float"
+  },
+  {
+    title: "Percent",
+    dataIndex: "Percent",
+    key: "Percent"
+  },
+  {
+    title: "Market",
+    dataIndex: "Market",
+    key: "Market"
+  }
+];
 
 class IPO extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            IPOTodayColumns:[{
-                title: 'Symbol',
-                dataIndex: 'Symbol',
-                key: 'Symbol',
-              }, {
-                title: 'Company',
-                dataIndex: 'Company',
-                key: 'Company',
-              }, {
-                title: 'Price',
-                dataIndex: 'Price',
-                key: 'Price',
-              },{
-                title: 'Shares',
-                dataIndex: 'Shares',
-                key: 'Shares',
-              },{
-                title: 'Amount',
-                dataIndex: 'Amount',
-                key: 'Amount',
-              },{
-                title: 'Percent',
-                dataIndex: 'Percent',
-                key: 'Percent',
-              },{
-                title: 'Market',
-                dataIndex: 'Market',
-                key: 'Market',
-              }],
-            IPOTodayTarget:'today-ipos',
-            
-            IPOCalendarTitle:['Symbol','Company','Expected','Price','Shares','Amount','Float','Percent','Market'],
-            IPOCalendarColumns:[{
-                title: 'Symbol',
-                dataIndex: 'Symbol',
-                key: 'Symbol',
-              }, {
-                title: 'Company',
-                dataIndex: 'Company',
-                key: 'Company',
-              }, {
-                title: 'Expected',
-                dataIndex: 'Expected',
-                key: 'Expected',
-              },{
-                title: 'Price',
-                dataIndex: 'Price',
-                key: 'Price',
-              },{
-                title: 'Shares',
-                dataIndex: 'Shares',
-                key: 'Shares',
-              },{
-                title: 'Amount',
-                dataIndex: 'Amount',
-                key: 'Amount',
-              },{
-                title: 'Float',
-                dataIndex: 'Float',
-                key: 'Float',
-              },{
-                title: 'Percent',
-                dataIndex: 'Percent',
-                key: 'Percent',
-              },{
-                title: 'Market',
-                dataIndex: 'Market',
-                key: 'Market',
-              }],
-            IPOCalendarTarget:'upcoming-ipos',
-        };  
-           
-    }
-   
-    
-    render() {        
-        const { IPOTodayColumns,IPOTodayTarget,IPOCalendarColumns,IPOCalendarTarget } = this.state;
-        return (
-            <div className='IPO'>
-                <div className='IPOToday'>
-                    <h2>Today's Expected IPOs</h2>
-                    <IPOTable                    
-                            columns={IPOTodayColumns}
-                            target={IPOTodayTarget}
-                        />
-                </div>
-                <div className='IPOCalendar'>
-                    <h2>IPO Calendar</h2>
-                    <IPOTable                
-                        columns={IPOCalendarColumns}
-                        target={IPOCalendarTarget}
-                    />
-                </div>
-            </div>
-        );
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+    this.props.fetchIPOs();
+  }
+  render() {
+    const { ipoData } = this.props;
+    const ipoTodayData =
+      Object.keys(ipoData).length === 0 ? [] : ipoData["today-ipos"].viewData;
+    const ipoUpcomingData =
+      Object.keys(ipoData).length === 0
+        ? []
+        : ipoData["upcoming-ipos"].viewData;
+    return (
+      <div className="IPO">
+        <div className="IPOToday">
+          <Table
+            dataSource={ipoTodayData}
+            columns={IPOTodayColumns}
+            pagination={false}
+            title={() => IPOTodayTitle}
+          />
+        </div>
+        <div className="IPOCalendar">
+          <Table
+            dataSource={ipoUpcomingData}
+            columns={IPOCalendarColumns}
+            pagination={false}
+            title={() => IPOCalendarTitle}
+          />
+        </div>
+      </div>
+    );
+  }
 }
+const mapStateToProps = state => ({
+  ipoData: state.IPOReducer.ipoData
+});
+const mapDipatchToProps = {
+  fetchIPOs
+};
 
-
-
-
-export default IPO;
+export default connect(
+  mapStateToProps,
+  mapDipatchToProps
+)(IPO);
