@@ -14,8 +14,11 @@ class CumtomizePeers extends Component {
     const { selectedTags, unSelectedTags } = this.props;
 
     return (
-      <div>
+      <div className="CustomizePeers">
         <div>
+          <h3>Cutomize Peers</h3>
+        </div>
+        <div className="Tags">
           {selectedTags.map(tag => (
             <Button
               size="small"
@@ -27,7 +30,7 @@ class CumtomizePeers extends Component {
             </Button>
           ))}
         </div>
-        <div>
+        <div className="Tags">
           {unSelectedTags.map(tag => (
             <Button
               size="small"
@@ -39,7 +42,7 @@ class CumtomizePeers extends Component {
             </Button>
           ))}
         </div>
-        <div>
+        <div className="Buttons">
           <Button type="primary" onClick={this.props.onClickUpdatePeers}>
             Update peers
           </Button>

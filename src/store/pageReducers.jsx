@@ -7,6 +7,7 @@ import NewsReducer from "../components/News/flow/reducer";
 import MyWatchListReducer from "../components/MyWatchList/flow/reducer";
 
 import StockDetailsReducer from "../components/StockDetails/flow/reducer";
+import SectorDetailsReducer from "../components/SectorDetails/flow/reducer";
 
 export default {
   SearchBarReducer,
@@ -16,5 +17,6 @@ export default {
   SpecialListReducer,
   NewsReducer,
   MyWatchListReducer,
-  StockDetailsReducer
+  StockDetailsReducer,
+  SectorDetailsReducer
 };

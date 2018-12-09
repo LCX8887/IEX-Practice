@@ -15,3 +15,7 @@ code {
 .ant-layout-header {
   background-color: white;
 }
+
+a {
+  color: rgba(0, 0, 0, 0.85);
+}

@@ -4,6 +4,8 @@ import propTypes from "prop-types";
 import { delFromWatchList } from "../../../store/global/actions";
 import { fetchPosts } from "../flow/actions";
 import { Layout, Card, Icon, Table } from "antd";
+import { Link } from "react-router-dom";
+
 const { Header, Content } = Layout;
 const getDate = lastUpdated => {
   const day = new Date(lastUpdated).toDateString();
@@ -42,10 +44,12 @@ class MyWatchList extends Component {
           width: "45%",
           render: (text, record) => {
             return (
-              <div className="Symbol">
-                <p>{record.symbol}</p>
-                <p>{record.companyName}</p>
-              </div>
+              <Link to={`/stocks/${record.symbol}`}>
+                <div className="Symbol">
+                  <p>{record.symbol}</p>
+                  <p>{record.companyName}</p>
+                </div>
+              </Link>
             );
           }
         },

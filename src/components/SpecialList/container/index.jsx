@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
+import { Link } from "react-router-dom";
 import SpecialListTable from "../../UI/SpecialListTable/index";
 import { Row, Col } from "antd";
 const lists = [
@@ -13,10 +14,12 @@ const lists = [
         width: "45%",
         render: (text, record) => {
           return (
-            <div className="Symbol">
-              <p>{record.symbol}</p>
-              <p>{record.companyName}</p>
-            </div>
+            <Link to={`/stocks/${record.symbol}`}>
+              <div className="Symbol">
+                <p>{record.symbol}</p>
+                <p>{record.companyName}</p>
+              </div>
+            </Link>
           );
         }
       },
@@ -43,10 +46,12 @@ const lists = [
         width: "45%",
         render: (text, record) => {
           return (
-            <div className="Symbol">
-              <p>{record.symbol}</p>
-              <p>{record.companyName}</p>
-            </div>
+            <Link to={`/stocks/${record.symbol}`}>
+              <div className="Symbol">
+                <p>{record.symbol}</p>
+                <p>{record.companyName}</p>
+              </div>
+            </Link>
           );
         }
       },
@@ -73,10 +78,12 @@ const lists = [
         width: "45%",
         render: (text, record) => {
           return (
-            <div className="Symbol">
-              <p>{record.symbol}</p>
-              <p>{record.companyName}</p>
-            </div>
+            <Link to={`/stocks/${record.symbol}`}>
+              <div className="Symbol">
+                <p>{record.symbol}</p>
+                <p>{record.companyName}</p>
+              </div>
+            </Link>
           );
         }
       },
@@ -103,10 +110,12 @@ const lists = [
         width: "45%",
         render: (text, record) => {
           return (
-            <div className="Symbol">
-              <p>{record.symbol}</p>
-              <p>{record.companyName}</p>
-            </div>
+            <Link to={`/stocks/${record.symbol}`}>
+              <div className="Symbol">
+                <p>{record.symbol}</p>
+                <p>{record.companyName}</p>
+              </div>
+            </Link>
           );
         }
       },

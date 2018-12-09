@@ -56,7 +56,8 @@ class StockDetails extends Component {
       chart,
       peers,
       peersData,
-      watchList
+      watchList,
+      selectedSymbol
     } = this.props;
     const { selectedRange, chartRange } = this.state;
 
@@ -74,7 +75,7 @@ class StockDetails extends Component {
           handleChartChange={this.handleChartChange}
         />
         <SymbolProfile company={company} quote={quote} />
-        <SymbolPeers peersData={peersData} />
+        <SymbolPeers peersData={peersData} selectedSymbol={selectedSymbol} />
       </div>
     );
   }

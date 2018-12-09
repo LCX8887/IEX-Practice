@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { MarketView, SymbolDetails, SearchBar } from "./views/index";
+import { MarketView, SymbolDetails, Sectors, SearchBar } from "./views/index";
 import "./App.css";
 import { Layout, Row, Col, Breadcrumb } from "antd";
 import { Route, Switch, BrowserRouter, HashRouter } from "react-router-dom";
@@ -11,6 +11,7 @@ class App extends Component {
     const content = (
       <Switch>
         <Route exact path="/stocks/:selectedSymbol" component={SymbolDetails} />
+        <Route exact path="/sectors/:selectedSector" component={Sectors} />
         <Route exact path="/" component={MarketView} />
       </Switch>
     );

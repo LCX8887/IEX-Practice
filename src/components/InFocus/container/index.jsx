@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import propTypes from "prop-types";
 import SpecialListTable from "../../UI/SpecialListTable/index";
 
@@ -11,10 +12,12 @@ const columns = [
     key: "Symbol",
     render: (text, record) => {
       return (
-        <div className="Symbol">
-          <p>{record.symbol}</p>
-          <p>{record.companyName}</p>
-        </div>
+        <Link to={`/stocks/${record.symbol}`}>
+          <div className="Symbol">
+            <p>{record.symbol}</p>
+            <p>{record.companyName}</p>
+          </div>
+        </Link>
       );
     }
   },

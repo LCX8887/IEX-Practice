@@ -193,3 +193,22 @@ b {
 .SymbolPeersHead button {
   float: right;
 }
+.CustomizePeers {
+  margin: 0 15px;
+}
+.CustomizePeers .Tags {
+  padding: 8px;
+  border: 1px solid rgb(226, 222, 222);
+  margin-bottom: 5px;
+}
+.CustomizePeers .Tags button {
+  width: 100%;
+  overflow: hidden;
+  margin: 2px 0;
+  text-align: left;
+  color: #55beff;
+  border: 1px solid #55beff;
+}
+.CustomizePeers .Buttons button {
+  margin: 2px;
+}

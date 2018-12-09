@@ -16,31 +16,51 @@ const getPeersDataArr = obj => {
   Object.values(obj).forEach(e => result.push(e.stats));
   return result;
 };
+
 class SymbolPeers extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showCustomizePeers: false,
-      unSelectedPeers: []
+      unSelectedPeers: [],
+      prevUnselectedPeers: []
     };
   }
   handleShowCustomizePeers = e => {
     this.setState({
-      showCustomizePeers: true
+      showCustomizePeers: true,
+      prevUnSelectedPeers: this.state.unSelectedPeers.concat()
     });
   };
   onClickSelectPeers = e => {
-    const target = e.target;
+    const target = e.target.name;
+    const unSelectedPeers = this.state.unSelectedPeers;
+    const symbol = e.target.name.split("-")[0];
+    const position = unSelectedPeers.indexOf(symbol);
+    let copy = unSelectedPeers.concat();
+    copy.splice(position, 1);
+    position < 0
+      ? this.setState({
+          unSelectedPeers: unSelectedPeers.concat(symbol)
+        })
+      : this.setState({
+          unSelectedPeers: copy
+        });
   };
-  onClickUpdatePeers = e => {};
-  onClickCancel = e => {
+  onClickUpdatePeers = e => {
     this.setState({
       showCustomizePeers: false
     });
   };
+  onClickCancel = e => {
+    this.setState({
+      showCustomizePeers: false,
+      unSelectedPeers: this.state.prevUnSelectedPeers.concat()
+    });
+  };
   render() {
     const { showCustomizePeers, unSelectedPeers } = this.state;
-    const { peersData } = this.props;
+    const { peersData, selectedSymbol } = this.props;
     const peersDataArr = getPeersDataArr(peersData);
     const filterPeersData = peersDataArr.filter(
       p => unSelectedPeers.indexOf(p.symbol) < 0
@@ -51,9 +71,13 @@ class SymbolPeers extends Component {
     let selectedTags = [];
     let unSelectedTags = [];
     peersDataArr.forEach(p => {
-      unSelectedPeers.indexOf(p.symbol) >= 0
-        ? selectedTags.push(p.symbol + "-" + p.companyName)
-        : unSelectedTags.push(p.symbol + "-" + p.companyName);
+      if (p.symbol === selectedSymbol) {
+        return null;
+      } else {
+        unSelectedPeers.indexOf(p.symbol) < 0
+          ? selectedTags.push(p.symbol + "-" + p.companyName)
+          : unSelectedTags.push(p.symbol + "-" + p.companyName);
+      }
     });
     return (
       <div className="SymbolPeers">

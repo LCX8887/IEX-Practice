@@ -8,6 +8,7 @@ import News from "./News/index";
 import MyWatchList from "./MyWatchList/index";
 import InFocus from "./InFocus/index";
 import StockDetails from "./StockDetails";
+import SectorDetails from "./SectorDetails";
 import "./index.css";
 export {
   SearchBar,
@@ -19,5 +20,6 @@ export {
   News,
   MyWatchList,
   InFocus,
-  StockDetails
+  StockDetails,
+  SectorDetails
 };
