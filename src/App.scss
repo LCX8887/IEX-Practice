@@ -30,6 +30,15 @@
     transform: rotate(360deg);
   }
 }
-.App .AppHeader {
-  background-color: #76a5d2;
+
+.hidden {
+  display: none;
+}
+.red {
+  color: #af3232;
+  background-color: transparent;
+}
+.green {
+  color: #076907;
+  background-color: transparent;
 }

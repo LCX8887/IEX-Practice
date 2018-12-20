@@ -1,0 +1,17 @@
+.IPO {
+  background-color: white;
+  padding: 10px;
+  .ant-table-title {
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .ant-table-content {
+    font-size: 0.3em;
+  }
+  th {
+    min-width: 90px;
+  }
+}

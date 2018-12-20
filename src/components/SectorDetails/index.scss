@@ -1,0 +1,15 @@
+.SectorDetailsContent {
+  .ant-table {
+    background-color: white;
+  }
+
+  .ant-table-content {
+    padding: 20px;
+    .ant-table-header {
+      overflow: auto;
+    }
+    p {
+      margin-bottom: 0px;
+    }
+  }
+}

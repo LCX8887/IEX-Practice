@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
-import SectorSummary from "../../SectorSummary";
+import SectorSummary from "../../UI/SectorSummary/index";
 import { Layout, Row, Col } from "antd";
 
 const { Header, Content } = Layout;

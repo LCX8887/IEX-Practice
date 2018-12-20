@@ -1,3 +1,3 @@
-import MarketView from './container/index';
-import './index.css';
+import MarketView from "./container/index";
+import "./index.scss";
 export default MarketView;

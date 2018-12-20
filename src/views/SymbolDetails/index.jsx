@@ -1,3 +1,3 @@
 import SymbolDetails from "./container/index";
-import "./index.css";
+import "./index.scss";
 export default SymbolDetails;

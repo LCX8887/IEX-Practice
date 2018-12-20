@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
 import { fetchSectors } from "../flow/actions";
-import SectorSummary from "../../SectorSummary";
+import SectorSummary from "../../UI/SectorSummary/index";
 import { Row, Col } from "antd";
 
 const bgSrcPrefix = "https://iextrading.com/images/stocks/";

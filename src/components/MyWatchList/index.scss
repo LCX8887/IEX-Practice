@@ -1,0 +1,21 @@
+.MyWatchList {
+  padding: 10px;
+  .ant-card-head-title {
+    p {
+      padding: 5px;
+      display: inline-block;
+      margin-bottom: 0px;
+    }
+  }
+  h2 {
+    display: inline-block;
+    margin: 0 10px 0 0;
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+  }
+}

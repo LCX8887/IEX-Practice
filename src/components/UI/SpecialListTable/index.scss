@@ -1,0 +1,17 @@
+.SpecialListTableHeader {
+  text-align: left;
+  h3 {
+    margin-bottom: 0px;
+  }
+  p {
+    font-size: 0.5px;
+  }
+}
+.Symbol {
+  p {
+    margin: 0;
+  }
+  &:nth-child(2) {
+    font-size: 0.5px;
+  }
+}

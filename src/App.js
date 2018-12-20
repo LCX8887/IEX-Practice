@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { MarketView, SymbolDetails, Sectors, SearchBar } from "./views/index";
-import "./App.css";
+import "./App.scss";
 import { Layout, Row, Col, Breadcrumb } from "antd";
 import { Route, Switch, BrowserRouter, HashRouter } from "react-router-dom";
 const { Header, Footer, Content, Sider } = Layout;

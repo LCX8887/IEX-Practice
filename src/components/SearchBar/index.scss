@@ -1,0 +1,47 @@
+.SearchBar {
+  a {
+    color: black;
+    font-weight: bold;
+  }
+  p {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
+.searchResultList {
+  max-height: 250px;
+  width: 100%;
+  background-color: white;
+  overflow-y: scroll;
+  z-index: 10;
+  position: absolute;
+  top: 50px;
+
+  .ant-list-item {
+    border: none;
+  }
+  .ant-list-item {
+    &:hover {
+      background-color: rgb(240, 240, 245);
+    }
+  }
+  .ant-list-item-content-single {
+    margin-left: 12px;
+  }
+}
+
+.searchResultList::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+  background-color: white;
+}
+.searchResultList::-webkit-scrollbar-track {
+  border-radius: 20px;
+  background-color: white;
+}
+
+.searchResultList::-webkit-scrollbar-thumb {
+  height: 20px;
+  border-radius: 20px;
+  background-color: rgb(211, 217, 223);
+}

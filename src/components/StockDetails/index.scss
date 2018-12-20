@@ -1,0 +1,124 @@
+.SymbolChart {
+  background-color: white;
+  .ant-radio-group {
+    width: 100%;
+    background-color: #e2e4ef;
+    text-align: left;
+  }
+  label {
+    background-color: transparent;
+    font-weight: bold;
+  }
+}
+
+.SymbolHeaderBoard {
+  background-color: white;
+  padding: 10px;
+  position: relative;
+  p {
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  .name {
+    text-align: left;
+    position: relative;
+    p,
+    b {
+      display: inline-block;
+      font-size: 18px;
+      margin-right: 5px;
+      margin-bottom: 0px;
+    }
+    button {
+      position: absolute;
+      right: 0px;
+      border: none;
+      background-color: transparent;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .change {
+    text-align: left;
+    p,
+    b {
+      display: inline-block;
+      margin-right: 5px;
+      margin-bottom: 0px;
+    }
+    b {
+      font-size: 28px;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+  .changePercent {
+    text-align: left;
+    p,
+    b {
+      display: inline-block;
+    }
+  }
+  .afterHours {
+    font-size: 10px;
+  }
+  .previousClose {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    font-size: 10px;
+  }
+}
+
+.SymbolProfile {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+  .details {
+    div {
+      padding: 0 8px 16px 8px;
+    }
+  }
+
+  .title {
+    margin-bottom: 8px;
+  }
+  .value {
+    margin: 0;
+    font-weight: bold;
+  }
+}
+.SymbolPeers {
+  background-color: white;
+  padding: 10px;
+  text-align: left;
+  h2 {
+    display: inline-block;
+  }
+  button {
+    float: right;
+  }
+}
+.CustomizePeers {
+  margin: 0 15px;
+  .Tags {
+    padding: 8px;
+    border: 1px solid rgb(226, 222, 222);
+    margin-bottom: 5px;
+    button {
+      width: 100%;
+      overflow: hidden;
+      margin: 2px 0;
+      text-align: left;
+      color: #55beff;
+      border: 1px solid #55beff;
+    }
+  }
+  .Buttons {
+    button {
+      margin: 2px;
+    }
+  }
+}

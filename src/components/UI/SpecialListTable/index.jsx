@@ -1,3 +1,3 @@
 import SpecialListTable from "./container/index";
-import "./index.css";
+import "./index.scss";
 export default SpecialListTable;
