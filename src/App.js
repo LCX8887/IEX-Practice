@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { MarketView, SymbolDetails, Sectors, SearchBar } from "./views/index";
+import {
+  MarketView,
+  SymbolDetails,
+  Sectors,
+  SearchBar,
+  HeaderBar
+} from "./views/index";
 import "./App.scss";
 import { Layout, Row, Col, Breadcrumb } from "antd";
 import { Route, Switch, BrowserRouter, HashRouter } from "react-router-dom";
 const { Header, Footer, Content, Sider } = Layout;
 class App extends Component {
   render() {
-    const header = <Route path="/" component={SearchBar} />;
+    const header = <Route path="/" component={HeaderBar} />;
     const content = (
       <Switch>
         <Route exact path="/stocks/:selectedSymbol" component={SymbolDetails} />

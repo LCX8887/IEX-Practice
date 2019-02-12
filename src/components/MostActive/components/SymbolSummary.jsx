@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const SymbolSummary = ({ symbol, name, price, change }) => {
   const title = (
     <div>
-      <p>{symbol}</p>
-      <p>{name}</p>
+      <h3>{symbol}</h3>
+      <h3>{name}</h3>
     </div>
   );
   const changePercent = (change * 100).toFixed(2) + "%";

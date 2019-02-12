@@ -16,7 +16,11 @@ const getTabletDetails = (arr, obj) => {
   let result = [];
   Object.keys(obj).length === 0
     ? (result = [])
-    : arr.forEach(a => result.push(Object.assign({}, obj[a].quote)));
+    : arr.forEach(a =>
+        obj.hasOwnProperty(a)
+          ? result.push(Object.assign({}, obj[a].quote))
+          : []
+      );
   return result;
 };
 class MyWatchList extends Component {

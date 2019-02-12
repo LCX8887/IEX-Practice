@@ -1,0 +1,12 @@
+.LoginForm {
+  .ant-form-item {
+    padding-bottom: 0px;
+    margin-bottom: 5px;
+  }
+  .LoginButton {
+    .ant-form-item {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+}

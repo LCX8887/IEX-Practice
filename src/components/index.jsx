@@ -9,6 +9,7 @@ import MyWatchList from "./MyWatchList/index";
 import InFocus from "./InFocus/index";
 import StockDetails from "./StockDetails";
 import SectorDetails from "./SectorDetails";
+import LoginForm from "./Login/index";
 import "./index.css";
 export {
   SearchBar,
@@ -21,5 +22,6 @@ export {
   MyWatchList,
   InFocus,
   StockDetails,
-  SectorDetails
+  SectorDetails,
+  LoginForm
 };
