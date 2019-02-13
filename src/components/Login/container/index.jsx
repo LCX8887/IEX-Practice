@@ -4,11 +4,10 @@ import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import NormalLoginForm from "../components/NormalLoginForm";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import NormalLogoutForm from "../components/NormalLogoutForm";
 import { logIn, logOut } from "../../../store/global/actions";
+import { Form } from "antd";
 import "antd/dist/antd.css";
-
-const Search = Input.Search;
 
 class LoginForm extends Component {
   constructor(props) {
@@ -21,11 +20,11 @@ class LoginForm extends Component {
     const WrappedNormalLoginForm = Form.create({ name: "normal_login" })(
       NormalLoginForm
     );
-    return (
-      <WrappedNormalLoginForm
-        loginIn={this.props.logIn}
-        logOut={this.props.logOut}
-      />
+    const { loginUser, logIn, logOut } = this.props;
+    return Object.keys(loginUser).length === 0 ? (
+      <WrappedNormalLoginForm logIn={logIn} />
+    ) : (
+      <NormalLogoutForm loginUser={loginUser} logOut={logOut} />
     );
   }
 }

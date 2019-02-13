@@ -19,7 +19,7 @@ const initialState = {
       watchList: ["GE", "BABA"]
     },
     {
-      username: "kesley",
+      username: "kelsey",
       password: "987654",
       email: "kelsey.li@nexty.com.au",
       watchList: ["PEP", "LEE"]
@@ -38,16 +38,16 @@ const delFromWatchList = (watchList, target) => {
   return result;
 };
 const matchSignedUsers = (signedUsers, loginUser) => {
+  var result = {};
   signedUsers.forEach(el => {
     if (
       el.username === loginUser.userName &&
       el.password === loginUser.password
     ) {
-      return el;
-    } else {
-      return { information: "check username or password" };
+      result = Object.assign({}, el);
     }
   });
+  return result;
 };
 const globalsReducer = (state = initialState, action) => {
   switch (action.type) {

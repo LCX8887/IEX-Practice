@@ -8,6 +8,10 @@ function hasErrors(fieldsError) {
 }
 
 class HorizontalLoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   componentDidMount() {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
