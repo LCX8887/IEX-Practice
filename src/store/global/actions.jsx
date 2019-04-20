@@ -4,30 +4,35 @@ import {
   SELECT_DEPARTMENT,
   SELECT_SYMBOL,
   LOG_IN,
-  LOG_OUT
-} from "./actionTypes";
+  LOG_OUT,
+  REGISTRATION,
+} from './actionTypes';
 
-export const selectDepartment = department => ({
+export const selectDepartment = (department) => ({
   type: SELECT_DEPARTMENT,
-  payload: department
+  payload: department,
 });
-export const selectSymbol = symbol => ({
+export const selectSymbol = (symbol) => ({
   type: SELECT_SYMBOL,
-  payload: symbol
+  payload: symbol,
 });
-export const addToWatchList = target => ({
+export const addToWatchList = (target) => ({
   type: ADD_TO_WATCH_LIST,
-  payload: target
+  payload: target,
 });
-export const delFromWatchList = target => ({
+export const delFromWatchList = (target) => ({
   type: DEL_FROM_WATCH_LIST,
-  payload: target
+  payload: target,
 });
-export const logIn = value => ({
+export const logIn = (value) => ({
   type: LOG_IN,
-  payload: value
+  payload: value,
 });
-export const logOut = value => ({
+export const logOut = (value) => ({
   type: LOG_OUT,
-  payload: value
+  payload: value,
+});
+export const registration = (value) => ({
+  type: REGISTRATION,
+  payload: value,
 });

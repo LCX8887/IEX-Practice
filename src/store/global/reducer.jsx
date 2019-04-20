@@ -4,28 +4,30 @@ import {
   SELECT_DEPARTMENT,
   SELECT_SYMBOL,
   LOG_IN,
-  LOG_OUT
-} from "./actionTypes";
+  LOG_OUT,
+  REGISTRATION,
+} from './actionTypes';
 
 const initialState = {
-  selectedSymbol: "",
-  watchList: ["AAPL", "FB", "A"],
-  selectedDepartment: "",
+  selectedSymbol: '',
+  watchList: ['AAPL', 'FB', 'A'],
+  selectedDepartment: '',
   signedUsers: [
     {
-      username: "lcx",
-      password: "123456",
-      email: "kelsey.li7788@gmail.com",
-      watchList: ["GE", "BABA"]
+      username: 'lcx',
+      password: '123456',
+      email: 'kelsey.li7788@gmail.com',
+      watchList: ['GE', 'BABA'],
     },
     {
-      username: "kelsey",
-      password: "987654",
-      email: "kelsey.li@nexty.com.au",
-      watchList: ["PEP", "LEE"]
-    }
+      username: 'kelsey',
+      password: '987654',
+      email: 'kelsey.li@nexty.com.au',
+      watchList: ['PEP', 'LEE'],
+    },
   ],
-  loginUser: {}
+  loginUser: {},
+  registrationError: false,
 };
 const delFromWatchList = (watchList, target) => {
   var position = watchList.indexOf(target);
@@ -39,7 +41,7 @@ const delFromWatchList = (watchList, target) => {
 };
 const matchSignedUsers = (signedUsers, loginUser) => {
   var result = {};
-  signedUsers.forEach(el => {
+  signedUsers.forEach((el) => {
     if (
       el.username === loginUser.userName &&
       el.password === loginUser.password
@@ -49,35 +51,61 @@ const matchSignedUsers = (signedUsers, loginUser) => {
   });
   return result;
 };
+const addSinedUsers = (signedUsers, newUser) => {
+  var isUserExist = false;
+  signedUsers.forEach((el) => {
+    if (el.username === newUser.username) {
+      isUserExist = true;
+    }
+  });
+  if (!isUserExist) {
+    signedUsers.push({
+      username: newUser.username,
+      password: newUser.password,
+      email: newUser.email,
+      watchList: [],
+    });
+  } else {
+  }
+  return signedUsers;
+};
 const globalsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECT_SYMBOL:
       return {
         ...state,
-        selectedSymbol: action.payload
+        selectedSymbol: action.payload,
       };
     case SELECT_DEPARTMENT:
       return {
         ...state,
-        selectedDepartment: action.payload
+        selectedDepartment: action.payload,
       };
     case ADD_TO_WATCH_LIST:
       return {
         ...state,
-        watchList: state.watchList.concat(action.payload)
+        watchList: state.watchList.concat(action.payload),
       };
     case DEL_FROM_WATCH_LIST:
       return {
         ...state,
-        watchList: delFromWatchList(state.watchList, action.payload)
+        watchList: delFromWatchList(state.watchList, action.payload),
       };
     case LOG_IN:
       return {
         ...state,
-        loginUser: matchSignedUsers(state.signedUsers, action.payload)
+        loginUser: matchSignedUsers(state.signedUsers, action.payload),
       };
     case LOG_OUT:
-      return {};
+      return {
+        ...state,
+        loginUser: {},
+      };
+    case REGISTRATION:
+      return {
+        ...state,
+        signedUsers: addSinedUsers(state.signedUsers, action.payload),
+      };
     default:
       return state;
   }

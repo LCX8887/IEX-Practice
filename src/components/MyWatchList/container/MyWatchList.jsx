@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { delFromWatchList } from "../../../store/global/actions";
-import { fetchPosts } from "../flow/actions";
-import { Layout, Card, Icon, Table } from "antd";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { delFromWatchList } from '../../../store/global/actions';
+import { fetchPosts } from '../flow/actions';
+import { Layout, Card, Icon, Table } from 'antd';
+import { Link } from 'react-router-dom';
 
 const { Header, Content } = Layout;
-const getDate = lastUpdated => {
+const getDate = (lastUpdated) => {
   const day = new Date(lastUpdated).toDateString();
   const time = new Date(lastUpdated).toTimeString().slice(0, 8);
-  return day + "," + time;
+  return day + ',' + time;
 };
 const getTabletDetails = (arr, obj) => {
   let result = [];
   Object.keys(obj).length === 0
     ? (result = [])
-    : arr.forEach(a =>
+    : arr.forEach((a) =>
         obj.hasOwnProperty(a)
           ? result.push(Object.assign({}, obj[a].quote))
           : []
@@ -29,23 +29,23 @@ class MyWatchList extends Component {
     this.state = {
       columns: [
         {
-          title: "",
-          dataIndex: "symbol",
-          key: "button",
-          width: "5%",
+          title: '',
+          dataIndex: 'symbol',
+          key: 'button',
+          width: '5%',
           render: (text, record) => {
             return (
               <button onClick={this.handleDelFromWatchList} value={text}>
                 <Icon type="star" theme="filled" />
               </button>
             );
-          }
+          },
         },
         {
-          title: "Name",
-          dataIndex: "name",
-          key: "name",
-          width: "45%",
+          title: 'Name',
+          dataIndex: 'name',
+          key: 'name',
+          width: '45%',
           render: (text, record) => {
             return (
               <Link to={`/stocks/${record.symbol}`}>
@@ -55,28 +55,28 @@ class MyWatchList extends Component {
                 </div>
               </Link>
             );
-          }
+          },
         },
         {
-          title: "Change",
-          dataIndex: "changePercent",
-          key: "changePercent",
-          width: "25%",
-          render: (text, record) => (text * 100).toFixed(2) + "%"
+          title: 'Change',
+          dataIndex: 'changePercent',
+          key: 'changePercent',
+          width: '25%',
+          render: (text, record) => (text * 100).toFixed(2) + '%',
         },
         {
-          title: "Price",
-          dataIndex: "close",
-          key: "close",
-          width: "35%"
-        }
-      ]
+          title: 'Price',
+          dataIndex: 'close',
+          key: 'close',
+          width: '35%',
+        },
+      ],
     };
   }
   componentDidMount() {
     this.props.fetchPosts(this.props.watchList.join());
   }
-  handleDelFromWatchList = e => {
+  handleDelFromWatchList = (e) => {
     this.props.delFromWatchList(e.currentTarget.value);
   };
   render() {
@@ -105,15 +105,15 @@ class MyWatchList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   watchList: state.global.watchList,
   myWatchList: state.MyWatchListReducer.myWatchList,
-  lastUpdated: state.MyWatchListReducer.lastUpdated
+  lastUpdated: state.MyWatchListReducer.lastUpdated,
 });
 
 const mapDispatchToProps = {
   delFromWatchList: delFromWatchList,
-  fetchPosts: fetchPosts
+  fetchPosts: fetchPosts,
 };
 
 MyWatchList.propTypes = {};

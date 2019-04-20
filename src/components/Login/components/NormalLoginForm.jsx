@@ -1,10 +1,9 @@
-import React from "react";
-import classNames from "classnames";
-import { Link } from "react-router-dom";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import React from 'react';
+
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
+  return Object.keys(fieldsError).some((field) => fieldsError[field]);
 }
 
 class HorizontalLoginForm extends React.Component {
@@ -17,45 +16,43 @@ class HorizontalLoginForm extends React.Component {
     this.props.form.validateFields();
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        console.log('Received values of form: ', values);
         this.props.logIn(values);
       }
     });
   };
-  handleSignIn = e => {
-    e.preventDefault();
-  };
+
   render() {
     const {
       getFieldDecorator,
       getFieldsError,
       getFieldError,
-      isFieldTouched
+      isFieldTouched,
     } = this.props.form;
     // Only show error after a field is touched.
     const userNameError =
-      isFieldTouched("userName") && getFieldError("userName");
+      isFieldTouched('userName') && getFieldError('userName');
     const passwordError =
-      isFieldTouched("password") && getFieldError("password");
+      isFieldTouched('password') && getFieldError('password');
     return (
       <div className="LoginForm">
         <Form layout="vertical" onSubmit={this.handleSubmit}>
           <Form.Item
-            validateStatus={userNameError ? "error" : ""}
-            help={userNameError || ""}
+            validateStatus={userNameError ? 'error' : ''}
+            help={userNameError || ''}
           >
-            {getFieldDecorator("userName", {
+            {getFieldDecorator('userName', {
               rules: [
-                { required: true, message: "Please input your username!" }
-              ]
+                { required: true, message: 'Please input your username!' },
+              ],
             })(
               <Input
                 prefix={
-                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
                 placeholder="Username"
               />
@@ -63,17 +60,17 @@ class HorizontalLoginForm extends React.Component {
           </Form.Item>
 
           <Form.Item
-            validateStatus={passwordError ? "error" : ""}
-            help={passwordError || ""}
+            validateStatus={passwordError ? 'error' : ''}
+            help={passwordError || ''}
           >
-            {getFieldDecorator("password", {
+            {getFieldDecorator('password', {
               rules: [
-                { required: true, message: "Please input your Password!" }
-              ]
+                { required: true, message: 'Please input your Password!' },
+              ],
             })(
               <Input
                 prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                  <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />
                 }
                 type="password"
                 placeholder="Password"
@@ -91,7 +88,7 @@ class HorizontalLoginForm extends React.Component {
               </Button>
             </Form.Item>
             <Form.Item>
-              <Button type="primary" onClick={this.handleSignIn}>
+              <Button type="primary" onClick={this.props.toggleSignIn}>
                 Sign in
               </Button>
             </Form.Item>
