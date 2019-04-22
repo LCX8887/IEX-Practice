@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 
 function hasErrors(fieldsError) {
@@ -88,8 +88,8 @@ class HorizontalLoginForm extends React.Component {
               </Button>
             </Form.Item>
             <Form.Item>
-              <Button type="primary" onClick={this.props.toggleSignIn}>
-                Sign in
+              <Button type="primary">
+                <Link to={'/registration'}>Sign In</Link>
               </Button>
             </Form.Item>
           </div>

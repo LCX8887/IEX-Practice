@@ -1,34 +1,37 @@
 import React from 'react';
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from 'antd';
+import { Link } from 'react-router-dom';
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+import { connect } from 'react-redux';
+import { Form, Input, Tooltip, Icon, Select, Button, AutoComplete } from 'antd';
+import { registration } from '../../../store/global/actions';
+
+// const { Option } = Select;
+// const AutoCompleteOption = AutoComplete.Option;
 
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
+    originalUsers: 0,
+    submitted: false,
   };
-
+  componentDidMount = () => {
+    this.setState({ originalSignedUsers: this.props.signedUsers.length });
+  };
+  componentDidUpdate = (prevProps) => {
+    if (this.state.submitted && !this.props.isUserExist) {
+      this.props.history.push('/');
+    } else if (this.props.isUserExist && !prevProps.isUserExist) {
+      alert('not success');
+    }
+  };
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
         this.props.registration(values);
-        this.props.toggleSignIn();
+        this.setState({ submitted: true });
       }
     });
   };
@@ -69,7 +72,7 @@ class RegistrationForm extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
+    // const { autoCompleteResult } = this.state;
 
     const formItemLayout = {
       labelCol: {
@@ -93,21 +96,25 @@ class RegistrationForm extends React.Component {
         },
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    );
+    // const prefixSelector = getFieldDecorator('prefix', {
+    //   initialValue: '86',
+    // })(
+    //   <Select style={{ width: 70 }}>
+    //     <Option value="86">+86</Option>
+    //     <Option value="87">+87</Option>
+    //   </Select>
+    // );
 
-    const websiteOptions = autoCompleteResult.map((website) => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
+    // const websiteOptions = autoCompleteResult.map((website) => (
+    //   <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
+    // ));
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form
+        {...formItemLayout}
+        onSubmit={this.handleSubmit}
+        className="registrationForm"
+      >
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
             rules: [
@@ -174,12 +181,25 @@ class RegistrationForm extends React.Component {
           </Button>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" onClick={this.props.toggleSignIn}>
-            Cancel
+          <Button type="primary">
+            <Link to={'/'}>Cancel</Link>
           </Button>
         </Form.Item>
       </Form>
     );
   }
 }
-export default RegistrationForm;
+const WrappedRegistrationForm = Form.create({ name: 'register' })(
+  RegistrationForm
+);
+const mapStateToProps = (state) => ({
+  isUserExist: state.global.isUserExist,
+  signedUsers: state.global.signedUsers,
+});
+const mapDispatchToProps = {
+  registration,
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WrappedRegistrationForm);

@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import propTypes from 'prop-types';
 import { delFromWatchList } from '../../../store/global/actions';
 import { fetchPosts } from '../flow/actions';
-import { Layout, Card, Icon, Table } from 'antd';
+import { Icon, Table } from 'antd';
 import { Link } from 'react-router-dom';
-
-const { Header, Content } = Layout;
 const getDate = (lastUpdated) => {
   const day = new Date(lastUpdated).toDateString();
   const time = new Date(lastUpdated).toTimeString().slice(0, 8);
@@ -76,6 +73,24 @@ class MyWatchList extends Component {
   componentDidMount() {
     this.props.fetchPosts(this.props.watchList.join());
   }
+  componentDidUpdate(prevProps) {
+    const equar = (a, b) => {
+      if (a.length !== b.length) {
+        return false;
+      } else {
+        for (let i = 0; i < a.length; i++) {
+          if (a[i] !== b[i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+    };
+    if (!equar(this.props.watchList, prevProps.watchList)) {
+      this.props.fetchPosts(this.props.watchList.join());
+    }
+  }
+
   handleDelFromWatchList = (e) => {
     this.props.delFromWatchList(e.currentTarget.value);
   };
@@ -106,7 +121,6 @@ class MyWatchList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  watchList: state.global.watchList,
   myWatchList: state.MyWatchListReducer.myWatchList,
   lastUpdated: state.MyWatchListReducer.lastUpdated,
 });

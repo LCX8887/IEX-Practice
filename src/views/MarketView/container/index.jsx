@@ -6,11 +6,12 @@ import {
   SpecialList,
   News,
   MyWatchList,
-  InFocus
-} from "../../../components/index";
+  InFocus,
+} from '../../../components/index';
 
-import React, { Component } from "react";
-import { Layout, Row, Col } from "antd";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Layout, Row, Col } from 'antd';
 
 const { Header, Footer, Content, Sider } = Layout;
 
@@ -20,6 +21,11 @@ class MarketView extends Component {
     this.state = {};
   }
   render() {
+    // const watchList = [];
+    const watchList =
+      Object.keys(this.props.loginUser).length !== 0
+        ? this.props.loginUser.watchList
+        : this.props.watchList;
     return (
       <Layout>
         <Content className="MarketViewContent">
@@ -30,7 +36,7 @@ class MarketView extends Component {
               <InFocus />
             </Content>
             <Sider className="MarketViewSider" width={400}>
-              <MyWatchList />
+              <MyWatchList watchList={watchList} />
             </Sider>
           </Layout>
           <IPO />
@@ -42,5 +48,12 @@ class MarketView extends Component {
     );
   }
 }
-
-export default MarketView;
+const mapStateToProps = (state) => ({
+  loginUser: state.global.loginUser,
+  watchList: state.global.watchList,
+});
+const mapDispatchToProps = {};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MarketView);

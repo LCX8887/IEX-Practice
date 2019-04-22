@@ -26,6 +26,7 @@ const initialState = {
       watchList: ['PEP', 'LEE'],
     },
   ],
+  isUserExist: false,
   loginUser: {},
   registrationError: false,
 };
@@ -51,14 +52,18 @@ const matchSignedUsers = (signedUsers, loginUser) => {
   });
   return result;
 };
-const addSinedUsers = (signedUsers, newUser) => {
-  var isUserExist = false;
+const isUserExist = (signedUsers, newUser) => {
+  let userExist = false;
   signedUsers.forEach((el) => {
     if (el.username === newUser.username) {
-      isUserExist = true;
+      userExist = true;
     }
   });
-  if (!isUserExist) {
+  return userExist;
+};
+const addSignedUsers = (signedUsers, newUser) => {
+  let userExist = isUserExist(signedUsers, newUser);
+  if (!userExist) {
     signedUsers.push({
       username: newUser.username,
       password: newUser.password,
@@ -104,7 +109,8 @@ const globalsReducer = (state = initialState, action) => {
     case REGISTRATION:
       return {
         ...state,
-        signedUsers: addSinedUsers(state.signedUsers, action.payload),
+        isUserExist: isUserExist(state.signedUsers, action.payload),
+        signedUsers: addSignedUsers(state.signedUsers, action.payload),
       };
     default:
       return state;

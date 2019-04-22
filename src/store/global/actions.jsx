@@ -5,6 +5,7 @@ import {
   SELECT_SYMBOL,
   LOG_IN,
   LOG_OUT,
+  IS_USER_EXIST,
   REGISTRATION,
 } from './actionTypes';
 
