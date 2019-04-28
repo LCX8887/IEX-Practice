@@ -175,12 +175,12 @@ class RegistrationForm extends React.Component {
             ],
           })(<Input />)}
         </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item {...tailFormItemLayout} className="RegistrationButton">
           <Button type="primary" htmlType="submit">
             Register
           </Button>
         </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item {...tailFormItemLayout} className="RegistrationButton">
           <Button type="primary">
             <Link to={'/'}>Cancel</Link>
           </Button>

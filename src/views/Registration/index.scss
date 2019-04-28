@@ -1,0 +1,12 @@
+.registrationForm {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+  .RegistrationButton {
+    display: inline-block;
+    margin: 5px;
+  }
+  .ant-form-item-control-wrapper {
+    margin: 0;
+  }
+}

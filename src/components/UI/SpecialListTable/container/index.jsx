@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { fetchLists } from "../flow/actions";
-import { Table } from "antd";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { fetchLists } from '../flow/actions';
+import { Table } from 'antd';
 
 class SpecialListTable extends Component {
   constructor(props) {
@@ -19,10 +19,10 @@ class SpecialListTable extends Component {
     listDetails = listData[target];
     const day = new Date(lastUpdated).toDateString();
     const time = new Date(lastUpdated).toTimeString().slice(0, 8);
-    const updatedTime = day + "," + time;
+    const updatedTime = day + ',' + time;
     const tableHead = (
       <div className="SpecialListTableHeader">
-        <h3>{title}</h3>
+        <h2>{title}</h2>
         <p>{updatedTime}</p>
       </div>
     );
@@ -40,12 +40,12 @@ class SpecialListTable extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   listData: state.SpecialListReducer,
-  lastUpdated: state.SpecialListReducer.lastUpdated
+  lastUpdated: state.SpecialListReducer.lastUpdated,
 });
 const mapDispatchToProps = {
-  fetchLists
+  fetchLists,
 };
 
 export default connect(

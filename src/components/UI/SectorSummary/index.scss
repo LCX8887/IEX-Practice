@@ -1,22 +1,44 @@
 .SectorSummary {
-  margin-bottom: 5px;
-}
-.SectorSummary .ant-card-body {
-  padding: 5px;
-}
-.SectorSummary .ant-card-body p {
-  margin-bottom: 0px;
-}
-.SectorSummary .ant-card-cover img {
-  height: 120px;
-}
-.SectorSummary .green {
-  color: white;
-  background-color: #076907;
-  font-weight: bold;
-}
-.SectorSummary .red {
-  color: white;
-  background-color: #af3232;
-  font-weight: bold;
+  overflow: auto;
+  margin: 5px;
+  position: relative;
+  .ant-card-body {
+    padding: 5px;
+  }
+  img {
+    width: 100%;
+    height: 130px;
+  }
+  p {
+    color: white;
+    font-weight: bolder;
+  }
+  .SectorName {
+    margin: 5px;
+    display: block;
+    font-size: 13px;
+    position: absolute;
+    top: 0;
+  }
+  .wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+  }
+  .SectorPerformance {
+    display: inline-block;
+    float: right;
+    margin: 5px;
+    padding: 0 5px;
+  }
+  .green {
+    color: white;
+    background-color: #076907;
+    font-weight: bold;
+  }
+  .red {
+    color: white;
+    background-color: #af3232;
+    font-weight: bold;
+  }
 }

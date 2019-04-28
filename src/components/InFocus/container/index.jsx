@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import propTypes from "prop-types";
-import SpecialListTable from "../../UI/SpecialListTable/index";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
+import SpecialListTable from '../../UI/SpecialListTable/index';
 
 const columns = [
   {
-    title: "Symbol",
-    dataIndex: "symbol",
-    width: "45%",
-    key: "Symbol",
+    title: 'Symbol',
+    dataIndex: 'symbol',
+    width: '45%',
+    key: 'Symbol',
     render: (text, record) => {
       return (
         <Link to={`/stocks/${record.symbol}`}>
@@ -19,21 +19,25 @@ const columns = [
           </div>
         </Link>
       );
-    }
+    },
   },
   {
-    title: "Change",
-    dataIndex: "change",
-    key: "Change"
+    title: 'Change',
+    dataIndex: 'change',
+    key: 'Change',
+    render: (text, record) => {
+      const classname = record.change < 0 ? 'red' : 'green';
+      return <p className={classname}>{record.change}</p>;
+    },
   },
   {
-    title: "Price",
-    dataIndex: "latestPrice",
-    key: "Price"
-  }
+    title: 'Price',
+    dataIndex: 'latestPrice',
+    key: 'Price',
+  },
 ];
-const target = "infocus";
-const title = "Recently in focus";
+const target = 'infocus';
+const title = 'Recently in focus';
 class InFocus extends Component {
   render() {
     return (

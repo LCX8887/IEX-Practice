@@ -29,11 +29,11 @@ class App extends Component {
     const footer = (
       <div>
         <p>
-          Data provided for free by
+          Data provided for free by &nbsp;
           <a target="_blank" href="https://iextrading.com/developer/">
             IEX
           </a>
-          . View
+          . View &nbsp;
           <a target="_blank" href="https://iextrading.com/api-exhibit-a/">
             IEX’s Terms of Use
           </a>

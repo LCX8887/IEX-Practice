@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { fetchSectors } from "../flow/actions";
-import SectorSummary from "../../UI/SectorSummary/index";
-import { Row, Col } from "antd";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { fetchSectors } from '../flow/actions';
+import SectorSummary from '../../UI/SectorSummary/index';
+import { Row, Col } from 'antd';
 
-const bgSrcPrefix = "https://iextrading.com/images/stocks/";
-const bgSrcSuffix = ".jpg";
-const getDate = lastUpdated => {
+const bgSrcPrefix = 'https://iextrading.com/images/stocks/';
+const bgSrcSuffix = '.jpg';
+const getDate = (lastUpdated) => {
   const day = new Date(lastUpdated).toDateString();
   const time = new Date(lastUpdated).toTimeString().slice(0, 8);
-  return day + "," + time;
+  return day + ',' + time;
 };
 
 class SectorHighLights extends Component {
@@ -21,8 +21,8 @@ class SectorHighLights extends Component {
   componentDidMount() {
     this.props.fetchSectors();
   }
-  getSrcByName = str => {
-    const name = str.replace(" ", "%20");
+  getSrcByName = (str) => {
+    const name = str.replace(' ', '%20');
     return bgSrcPrefix + name + bgSrcSuffix;
   };
 
@@ -48,9 +48,9 @@ class SectorHighLights extends Component {
             gutter={24}
           >
             {[highest, lowest]
-              .filter(sector => !!sector)
+              .filter((sector) => !!sector)
               .map((sector, index) => (
-                <Col key={index} span={10}>
+                <Col key={index} span={12}>
                   <SectorSummary
                     name={sector.name}
                     performance={sector.performance}
@@ -65,12 +65,12 @@ class SectorHighLights extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   sectors: state.SectorPerformanceReducer.sectors,
-  lastUpdated: state.SectorPerformanceReducer.lastUpdated
+  lastUpdated: state.SectorPerformanceReducer.lastUpdated,
 });
 const mapDispatchToProps = {
-  fetchSectors
+  fetchSectors,
 };
 
 SectorHighLights.propTypes = {};

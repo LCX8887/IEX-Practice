@@ -1,6 +1,9 @@
 .SectorHighLights {
   background-color: white;
   padding: 10px;
+  .ant-col-12 {
+    padding: 0;
+  }
 }
 .SectorHighLightsHeader {
   height: auto;
