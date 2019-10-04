@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import propTypes from "prop-types";
-import { fetchMostActive } from "../flow/actions";
-import SymbolSummary from "../components/SymbolSummary";
-import { Layout, Row, Col } from "antd";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import propTypes from 'prop-types';
+import { fetchMostActive } from '../flow/actions';
+import SymbolSummary from '../components/SymbolSummary';
+import { Layout, Row, Col } from 'antd';
 
 const { Header, Content } = Layout;
 
@@ -43,11 +43,11 @@ class MostActive extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  mostActive: state.MostActiveReducer.mostActive
+const mapStateToProps = (state) => ({
+  mostActive: state.MostActiveReducer.mostActive,
 });
 const mapDispatchToProps = {
-  fetchMostActive
+  fetchMostActive,
 };
 
 MostActive.propTypes = {};
